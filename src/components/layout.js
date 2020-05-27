@@ -9,21 +9,27 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Button from '@material-ui/core/Button';
+import { Button, Grid, CssBaseline, Typography, Container, Paper, MenuItem, MenuList, Grow, ClickAwayListener, ButtonGroup, Divider }
+  from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
-import Icon from '@material-ui/core/Icon';
+import { Icon } from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-
+import PhoneIcon from '@material-ui/icons/Phone';
+import EmailIcon from '@material-ui/icons/Email';
 
 import Header from "./header"
 import "./layout.css"
+
+import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
+
+const primary = red[500]; // #1a466a
+const redAccent = red['A200']; // #e93444
+const lightAccent = blue.A200; // #3a6e93 (alternative method)
+
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -51,102 +57,114 @@ const Layout = ({ children }) => {
 
         <footer
         >
-      <CssBaseline />
+          <CssBaseline />
 
-          <Container maxWidth="md">
-            <div class="">
-              <h4 className="">
-                <i class="address card icon"></i>
-                    Contact Us</h4>
-              <h5 className=" ">High View Construction</h5>
-              <p>Gilberto Sanchez | Owner    <a className="header" href="tel:720-325-9473">
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={4} spacing={3}>
+              <Typography variant="">
+                Contact Us
+                      </Typography>
 
-                <div class="  " tabindex="0">
-                  <div class=" ">
-                    <i class=" "></i> Call Now
-</div>
-                  <div class=" ">
-                    720-325-9473
-</div>
+              <Typography >
+                High View Construction
+              </Typography>
+              <Typography variant="caption" >
+                Gilberto Sanchez | Owner
+              </Typography>
+              <a className="header" href="mailto:gilbertosanchez@highview5280.com">
 
-<Button
-        variant="contained"
-        color="primary"
-        size="large"
-        startIcon={<SaveIcon />}
-      >
-        Save
-      </Button>
-
-
-
-                </div>
+                <ButtonGroup variant="contained" color="primary" aria-label="split button"
+                >
+                  <Button startIcon={<EmailIcon />}></Button>
+                  <Typography variant="" >
+                    Gilbertosanchez@highview5280.com
+                                </Typography>
+                </ButtonGroup>
               </a>
-                <a className="header" href="mailto:gilbertosanchez@highview5280.com">
 
-                  <div class="" tabindex="0">
-                    <div class=" ">
-                      <i class="envelope icon"></i>
-                    </div>
-                    <div class="">
-                      gilbertosanchez@highview5280.com
-    </div>
-                  </div>
-                </a>
-              </p>
+              <a className="header" href="tel:720-325-9473">
 
+                <ButtonGroup variant="contained" color="primary" aria-label="split button"
+                >
+                  <Button startIcon={<PhoneIcon />} ></Button>
+                  <Typography variant="caption" >
+                    720-325-9473
+                  </Typography>
+                </ButtonGroup>
+              </a>
 
 
 
-            </div>
-            <div class="">
-              <h4 className="">
-                <i class="suitcase icon"></i>
-                    Gutter Services</h4>
-              <div className="">
-                <div className="">
-                  <div class="">
-                    <div class="">
-                      <a>Commercial Services</a>
 
-                    </div>
-                  </div>
-                </div>
-                <div className="">
-                  <div class="">
-                    <div class="">
-                      <a>Residential Services</a>
 
-                    </div>
-                  </div>
-                </div>
 
-                <div className="">
-                  <div class="">
-                    <div class="">
-                      <a>Roofing Partnership Information</a>
+            </Grid>
+            <Grid item xs={12} md={4} spacing={3}>
+              <Grid>
 
-                    </div>
-                  </div>
-                </div>
+                <Typography variant="caption" >
+                  Gutter Services
+                </Typography>
 
-              </div>
-            </div>
-            <div class="">
-              <h4 className="">   <i class="tag icon"></i>
+                <ButtonGroup
+                  orientation="vertical"
+                  color="primary"
+                  aria-label="vertical contained primary button group"
+                  variant="text"
+                >
 
-                    Referrals</h4>
+                  <Button>
+                    <Typography variant="caption" >
+                      Commercial Services
+                 </Typography>
+                  </Button>
+                  <Button>
+                    <Typography variant="caption" >
+                      Residential Services
+                 </Typography>
+                  </Button>
+                  <Button>
+                    <Typography variant="caption" >
+                      Partnership Information
+                 </Typography>
+                  </Button>
+                </ButtonGroup>
+              </Grid>
+
+            </Grid>
+            <Grid item xs={12} md={4} spacing={3}>
+              <Button
+                orientation="vertical"
+                color="primary"
+                aria-label="vertical contained  button "
+                variant="text">
+                Referrals Program
+              </Button>
+
               <br />
-              <p>Free installation of our basic gutter guards up to 100ft when you refer family &amp; friends to High View Construction if they spend $500 or more</p>
-            </div>
-          </Container>
-          <h4 className="header">Proudly Serving all of Denver Metro Area and the surrounding area including</h4>
+              <Typography >Free installation of our basic gutter guards up to 100ft when you refer family &amp; friends to High View Construction if they spend $500 or more</Typography>
 
-          <hr />
-          <p className="">
-            Aurora| Lakewood | Englewood | Westminster | Arvada | Commerce City |  Greenwood Village | Parker | Highlands Ranch | Littleton | Broomfield | Longmont | Colorado Springs | Boulder | Golden | Castle Rock
-    </p>
-          © {new Date().getFullYear()}, High View Construction
+            </Grid>
+          </Grid>
+          <Paper>
+            <Container>
+              <Typography variant="">
+                Proudly Serving all of Denver Metro Area and the surrounding area including
+             </Typography>
+
+              <Divider variant="middle" />
+              <Typography
+                variant="caption"
+                display="block"
+              >
+                Aurora| Lakewood | Englewood | Westminster | Arvada | Commerce City |  Greenwood Village | Parker | Highlands Ranch | Littleton | Broomfield | Longmont | Colorado Springs | Boulder | Golden | Castle Rock
+             </Typography>
+              <Typography variant="caption" >
+                © {new Date().getFullYear()}, High View Construction
+             </Typography>
+            </Container>
+          </Paper>
+
 
         </footer>
       </div>

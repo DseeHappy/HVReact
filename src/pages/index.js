@@ -4,12 +4,13 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+import Home from "../pages/Home"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home High View Construction" />
    
-    <Link to="/Residential/">Go to page 2</Link>
+    <Home/>
   </Layout>
 )
 

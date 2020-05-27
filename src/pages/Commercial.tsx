@@ -5,13 +5,13 @@ import { PageProps, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Residential = (props: PageProps) => (
+const Commercial = (props: PageProps) => (
   <Layout>
-    <SEO title="Residential Services" />
+    <SEO title="Commercial Services" />
     <h1>Hi from the second page</h1>
     <p>Welcome to page 2 ({props.path})</p>
     <Link to="/">Go back to the homepage</Link>
   </Layout>
 )
 
-export default Residential
+export default Commercial
