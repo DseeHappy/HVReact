@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-
+import {Button} from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -37,9 +37,9 @@ function Estimate() {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <Button   variant="contained"color="primary" type="button" onClick={handleOpen}>
         Free Estimate
-      </button>
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

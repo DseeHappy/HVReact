@@ -41,6 +41,18 @@ import Estimate from "../pages/Estimate"
 
 const drawerWidth = 240;
 
+const centerContent = makeStyles({
+    root: {
+        maxHeight: 1920,
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    Paper: {
+
+    },
+
+});
 const mainCards = makeStyles(({ breakpoints, spacing }) => ({
     root: {
         margin: 'auto',
@@ -347,7 +359,7 @@ const images = [
         width: '30%',
     },
     {
-        url: '../images/a (10).jpg',
+        url: { gutterGuard },
         title: 'Commercial',
         width: '30%',
     },
@@ -384,35 +396,34 @@ function Home() {
         setActiveStep(0);
     };
 
+
     return (
         <div>
             <CssBaseline />
 
             <ReactCompareImage leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}>
 
-            </AppBar>
-            <Container>
+            <Paper className={centerContent.root} elevation={0} >
                 <Paper elevation={3}>
                     <Container maxWidth="md">
-                        <Typography variant="h4" align="center" component="h1">
+                        <Typography variant="h3" align="center" component="h1">
                             At High View we pride ourselves in high quality workmanship
                               </Typography>
                         <hr />
 
-                        <Typography color="primary" variant="h6" align="justify" component="h2">
+                        <Typography color="primary" variant="body2" align="center" component="h2">
                             EVERYTHING INSTALLED BY US IS READY TO STAND THE WEATHER HERE IN COLORADO
                               </Typography>
                     </Container>
                 </Paper>
-            </Container>
+            </Paper>
+
+
             <br />
             <Divider gutterBottom variant="middle" />
             <br />
+
+
             <Paper>
                 <Container maxWidth="lg">
                     <Grid container alignItems="center" spacing={3}>
@@ -533,26 +544,29 @@ function Home() {
             </Paper>
             <br />
             <Divider variant="middle" />
-            <br />
 
-
-            <Container maxWidth="md">
-                <Typography variant="h4" align="center" component="h6">
-                    Three Easy Steps to Having a Clean, Leak-free Home
+            <Paper elevation={3}>
+                <Container maxWidth="md">
+                    <Typography variant="h4" align="center" component="h6">
+                        Three Easy Steps to Having a Clean, Leak-free Home
                 </Typography>
-                <div className={EstimateStepping.root}>
-                    <Stepper activeStep={activeStep} alternativeLabel>
-                        {steps.map((label) => (
-                            <Step key={label}>
-                                <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+                    <div className={EstimateStepping.root}>
+                        <Stepper activeStep={activeStep} alternativeLabel>
+                            {steps.map((label) => (
+                                <Step key={label}>
+                                    <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
 
-                            </Step>
-                        ))}
-                    </Stepper>
-                    <Estimate />
-                </div>
-            </Container>
+                                </Step>
+                            ))}
 
+                        </Stepper>
+                    </div>
+                    <Container maxWidth="sm" align="center">
+                        <Estimate />
+
+                    </Container>
+                </Container>
+            </Paper>
 
 
             <br />
@@ -562,7 +576,7 @@ function Home() {
                 <Card>
                     <CardActionArea>
                         <img
-                            
+
                             component="img"
                             alt="Why choose High View Construction?"
                             height="350"
@@ -618,6 +632,7 @@ function Home() {
 
                 </Card>
             </Container>
+            <br />
             <div className={threeImage.root}>
                 {images.map((image) => (
                     <ButtonBase

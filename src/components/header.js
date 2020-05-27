@@ -100,7 +100,7 @@ export default function Header() {
         </div>
         <Divider />
         <List>
-          {['Residential', 'Commercial', 'Partner With Us'].map((text, index) => (
+          {['Residential', 'Commercial', 'Partner'].map((text, index) => (
             <Link to={text}>
               <ListItem button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

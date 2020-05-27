@@ -58,114 +58,114 @@ const Layout = ({ children }) => {
         <footer
         >
           <CssBaseline />
-
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4} spacing={3}>
-              <Typography variant="">
-                Contact Us
+          <Paper elevation={3}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={4} spacing={3}>
+                <Typography variant="">
+                  Contact Us
                       </Typography>
 
-              <Typography >
-                High View Construction
+                <Typography >
+                  High View Construction
               </Typography>
-              <Typography variant="caption" >
-                Gilberto Sanchez | Owner
-              </Typography>
-              <a className="header" href="mailto:gilbertosanchez@highview5280.com">
-
-                <ButtonGroup variant="contained" color="primary" aria-label="split button"
-                >
-                  <Button startIcon={<EmailIcon />}></Button>
-                  <Typography variant="" >
-                    Gilbertosanchez@highview5280.com
-                                </Typography>
-                </ButtonGroup>
-              </a>
-
-              <a className="header" href="tel:720-325-9473">
-
-                <ButtonGroup variant="contained" color="primary" aria-label="split button"
-                >
-                  <Button startIcon={<PhoneIcon />} ></Button>
-                  <Typography variant="caption" >
-                    720-325-9473
-                  </Typography>
-                </ButtonGroup>
-              </a>
-
-
-
-
-
-
-            </Grid>
-            <Grid item xs={12} md={4} spacing={3}>
-              <Grid>
-
                 <Typography variant="caption" >
-                  Gutter Services
+                  Gilberto Sanchez | Owner
+              </Typography>
+                <a className="header" href="mailto:gilbertosanchez@highview5280.com">
+
+                  <ButtonGroup variant="contained" color="primary" aria-label="split button"
+                  >
+                    <Button startIcon={<EmailIcon />}></Button>
+                    <Typography variant="" >
+                      Gilbertosanchez@highview5280.com
+                                </Typography>
+                  </ButtonGroup>
+                </a>
+
+                <a className="header" href="tel:720-325-9473">
+
+                  <ButtonGroup variant="contained" color="primary" aria-label="split button"
+                  >
+                    <Button startIcon={<PhoneIcon />} ></Button>
+                    <Typography variant="caption" >
+                      720-325-9473
+                  </Typography>
+                  </ButtonGroup>
+                </a>
+
+
+
+
+
+
+              </Grid>
+              <Grid item xs={12} md={4} spacing={3}>
+                <Grid>
+
+                  <Typography variant="caption" >
+                    Gutter Services
                 </Typography>
 
-                <ButtonGroup
+                  <ButtonGroup
+                    orientation="vertical"
+                    color="primary"
+                    aria-label="vertical contained primary button group"
+                    variant="text"
+                  >
+
+                    <Button>
+                      <Typography variant="caption" >
+                        Commercial Services
+                 </Typography>
+                    </Button>
+                    <Button>
+                      <Typography variant="caption" >
+                        Residential Services
+                 </Typography>
+                    </Button>
+                    <Button>
+                      <Typography variant="caption" >
+                        Partnership Information
+                 </Typography>
+                    </Button>
+                  </ButtonGroup>
+                </Grid>
+
+              </Grid>
+              <Grid item xs={12} md={4} spacing={3}>
+                <Button
                   orientation="vertical"
                   color="primary"
-                  aria-label="vertical contained primary button group"
-                  variant="text"
-                >
-
-                  <Button>
-                    <Typography variant="caption" >
-                      Commercial Services
-                 </Typography>
-                  </Button>
-                  <Button>
-                    <Typography variant="caption" >
-                      Residential Services
-                 </Typography>
-                  </Button>
-                  <Button>
-                    <Typography variant="caption" >
-                      Partnership Information
-                 </Typography>
-                  </Button>
-                </ButtonGroup>
-              </Grid>
-
-            </Grid>
-            <Grid item xs={12} md={4} spacing={3}>
-              <Button
-                orientation="vertical"
-                color="primary"
-                aria-label="vertical contained  button "
-                variant="text">
-                Referrals Program
+                  aria-label="vertical contained  button "
+                  variant="text">
+                  Referrals Program
               </Button>
 
-              <br />
-              <Typography >Free installation of our basic gutter guards up to 100ft when you refer family &amp; friends to High View Construction if they spend $500 or more</Typography>
+                <br />
+                <Typography >Free installation of our basic gutter guards up to 100ft when you refer family &amp; friends to High View Construction if they spend $500 or more</Typography>
 
+              </Grid>
             </Grid>
-          </Grid>
-          <Paper>
-            <Container>
-              <Typography variant="">
-                Proudly Serving all of Denver Metro Area and the surrounding area including
+            <Paper>
+              <Container>
+                <Typography variant="">
+                  Proudly Serving all of Denver Metro Area and the surrounding area including
              </Typography>
 
-              <Divider variant="middle" />
-              <Typography
-                variant="caption"
-                display="block"
-              >
-                Aurora| Lakewood | Englewood | Westminster | Arvada | Commerce City |  Greenwood Village | Parker | Highlands Ranch | Littleton | Broomfield | Longmont | Colorado Springs | Boulder | Golden | Castle Rock
+                <Divider variant="middle" />
+                <Typography
+                  variant="caption"
+                  display="block"
+                >
+                  Aurora| Lakewood | Englewood | Westminster | Arvada | Commerce City |  Greenwood Village | Parker | Highlands Ranch | Littleton | Broomfield | Longmont | Colorado Springs | Boulder | Golden | Castle Rock
              </Typography>
-              <Typography variant="caption" >
-                © {new Date().getFullYear()}, High View Construction
+                <Typography variant="caption" >
+                  © {new Date().getFullYear()}, High View Construction
              </Typography>
-            </Container>
+              </Container>
+            </Paper>
+
           </Paper>
-
-
         </footer>
       </div>
     </>
