@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,18 +18,67 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Link } from "gatsby"
+import logo from "../images/hv.png"
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
   toolbar: {
-    minHeight: 128,
+    minHeight: 80,
     alignItems: 'flex-start',
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
@@ -37,8 +86,18 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     alignSelf: 'flex-end',
+    borderRadius: '5px 60px 5px 60px',
+    backgroundColor: '#f5f5f5',
+    maxWidth: '240px',
+    minHeight: '60px',
+    marginBottom: '-100px',
+    overflow: 'visible',
+    zIndex: '9',
+    padding: '.5rem'
+
   },
 }));
+
 
 export default function Header() {
   const classes = useStyles();
@@ -57,12 +116,12 @@ export default function Header() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position="static"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar className={classes.toolbar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -72,10 +131,8 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Link to="/">
-            <Typography variant="h6" className={classes.title}  noWrap>
-              High View Construction
-          </Typography>
+          <Link className={classes.title} to="/">
+            <img src={logo} />
           </Link>
           <a href="">
             <Typography position="fixed" variant="h6" noWrap>
@@ -84,7 +141,7 @@ export default function Header() {
           </a>
         </Toolbar>
       </AppBar>
-      <Drawer
+      <SwipeableDrawer
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -111,15 +168,8 @@ export default function Header() {
         </List>
         <Divider />
 
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        
-      </main>
+      </SwipeableDrawer>
+
     </div>
   );
 }

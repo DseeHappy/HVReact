@@ -10,10 +10,12 @@ import after from "../images/a (11).jpg"
 import {
     AppBar, Card, CardActions, CardContent, Drawer, Toolbar, List, Typography, Divider,
     IconButton, CssBaseline, Button, Stepper, Step, StepLabel, Grid, ButtonBase, CardActionArea,
-    CardMedia, CardHeader
+    CardMedia, CardHeader, Box
 } from "@material-ui/core"
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+import { flexbox } from '@material-ui/system';
 
 
 
@@ -28,6 +30,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
@@ -38,6 +41,8 @@ import gutterGuard from "../images/leafblaster.jpg"
 import logo from "../images/hvlogo.png"
 
 import Estimate from "../pages/Estimate"
+
+import InstagramEmbed from 'react-instagram-embed';
 
 const drawerWidth = 240;
 
@@ -572,66 +577,64 @@ function Home() {
             <br />
 
 
-            <Container maxWidth="md" >
-                <Card>
-                    <CardActionArea>
-                        <img
+            <Card>
+                <CardActionArea>
+                    <img
 
-                            component="img"
-                            alt="Why choose High View Construction?"
-                            height="350"
-                            src={logo}
-                            title="Why choose High View Construction?"
-                        />
-                        <CardContent>
-                            <Typography variant="h4" align="center" component="h7">
-                                Why Choose High View Construction?
+                        component="img"
+                        alt="Why choose High View Construction?"
+                        height="350"
+                        src={logo}
+                        title="Why choose High View Construction?"
+                    />
+                    <CardContent>
+                        <Typography variant="h4" align="center" component="h7">
+                            Why Choose High View Construction?
                 </Typography>
-                            <Divider variant="middle" />
-                            <Typography variant="h6" align="left" component="p1">
-                                No matter the weather, High View is here ready for any and all your repair needs.
+                        <Divider variant="middle" />
+                        <Typography variant="h6" align="left" component="p1">
+                            No matter the weather, High View is here ready for any and all your repair needs.
                 </Typography>
-                            <br />
-                            <Typography variant="p" align="right" component="p2">
-                                We want to make sure you’re 100% satisfied, and we go the extra mile to make your experience as enjoyable and stress-free as possible.
+                        <br />
+                        <Typography variant="p" align="right" component="p2">
+                            We want to make sure you’re 100% satisfied, and we go the extra mile to make your experience as enjoyable and stress-free as possible.
                 </Typography>
-                            <Typography variant="h5">
-                                Here are a few things you can expect when you work with us
+                        <Typography variant="h5">
+                            Here are a few things you can expect when you work with us
                  </Typography>
-                            <Divider variant="inset" />
+                        <Divider variant="inset" />
 
-                            <List>
-                                <ListItem>
-                                    <Typography>
-                                        A full explanation of our recommended solutions
+                        <List>
+                            <ListItem>
+                                <Typography>
+                                    A full explanation of our recommended solutions
                             </Typography>
-                                </ListItem>
-                                <ListItem>
-                                    <Typography>
-                                        The best technicians in the business
+                            </ListItem>
+                            <ListItem>
+                                <Typography>
+                                    The best technicians in the business
                             </Typography>
-                                </ListItem>
-                                <ListItem>
-                                    <Typography>
-                                        A full clean up and follow up after every job
+                            </ListItem>
+                            <ListItem>
+                                <Typography>
+                                    A full clean up and follow up after every job
 
                             </Typography>
-                                </ListItem>
-                            </List>
-                            <Typography>
-                            </Typography>
-                        </CardContent>
-                        <CardMedia
-                            component="img"
-                            alt="Why choose High View Construction?"
-                            height="350"
-                            image={guttersBeauty}
-                            title="Why choose High View Construction?"
-                        />
-                    </CardActionArea>
+                            </ListItem>
+                        </List>
+                        <Typography>
+                        </Typography>
+                    </CardContent>
+                    <CardMedia
+                        component="img"
+                        alt="Why choose High View Construction?"
+                        height="350"
+                        image={guttersBeauty}
+                        title="Why choose High View Construction?"
+                    />
+                </CardActionArea>
 
-                </Card>
-            </Container>
+            </Card>
             <br />
             <div className={threeImage.root}>
                 {images.map((image) => (
@@ -665,10 +668,15 @@ function Home() {
                     </ButtonBase>
                 ))}
             </div>
+            <br />
             <Divider variant="middle" />
+            <br />
             <Paper>
                 <Container maxWidth="md">
+                    <br />
                     <Typography gutterBottom variant="h4" align="center">
+                        <PhotoCameraIcon fontSize="large" />
+                        <br />
                         Our Previous Work
            </Typography>
                     <Typography gutterBottom variant="h6" align="center">
@@ -681,91 +689,58 @@ function Home() {
                         <Button>More Photos</Button>
                     </Typography>
 
-                    <Card className={card.root}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                height="140"
-                                image="/static/images/cards/contemplative-reptile.jpg"
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-               </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-               </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-             </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-             </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={card.root}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                height="140"
-                                image="/static/images/cards/contemplative-reptile.jpg"
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-             </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-             </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-           </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-           </Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={card.root}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                height="140"
-                                image={logo}
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-           </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-           </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-         </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-         </Button>
-                        </CardActions>
-                    </Card>
                 </Container>
+                <br />
+                <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center">
+                    <InstagramEmbed
+                        url='https://www.instagram.com/p/CAgww00BkK-/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                    <InstagramEmbed
+                        url='https://www.instagram.com/p/B_yH2NnhBsE/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                    <InstagramEmbed
+                        url='https://www.instagram.com/p/B_8Sy45hkhk/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                    <InstagramEmbed
+                        url='https://www.instagram.com/p/CArHziIh9WV/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                </Box>
             </Paper>
             <Grid container spacing={1}>
                 <Grid item xs={12} md={6}>

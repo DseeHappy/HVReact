@@ -23,7 +23,8 @@
     "react-compare-image": "^2.0.4",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "react-iframe": "^1.8.0"
+    "react-iframe": "^1.8.0",
+    "react-instagram-embed": "^1.5.0"
   },
   "devDependencies": {
     "prettier": "2.0.5"
