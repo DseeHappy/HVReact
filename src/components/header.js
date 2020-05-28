@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Button, Box } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -25,6 +25,8 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flexGrow: 1,
+
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -81,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 80,
     alignItems: 'flex-start',
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(0),
   },
   title: {
     flexGrow: 1,
@@ -90,12 +92,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#f5f5f5',
     maxWidth: '240px',
     minHeight: '60px',
-    marginBottom: '-100px',
+    marginBottom: '-60px',
     overflow: 'visible',
     zIndex: '9',
     padding: '.5rem'
 
   },
+  topMenu: {
+    maxHeight: 80,
+    alignItems: 'flex-start',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(0
+      ),
+  }
 }));
 
 
@@ -115,12 +124,29 @@ export default function Header() {
   return (
     <div className={classes.root}>
       <CssBaseline />
+
+
       <AppBar
         position="static"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
+        <Toolbar className={classes.topMenu}>
+
+              <Button href="https://books.zoho.com/portal/highviewconstruction/login" noWrap variant="text" color="secondary">
+                720-325-9473
+          </Button>
+              <Button href="https://books.zoho.com/portal/highviewconstruction/login" noWrap variant="text" color="secondary">
+                GilbertoSanchez@highview5280.com
+          </Button>
+          <Button href="https://books.zoho.com/portal/highviewconstruction/login" noWrap variant="text" color="secondary">
+             Login
+          </Button>
+
+
+        </Toolbar>
+        <br />
         <Toolbar className={classes.toolbar}>
           <IconButton
             color="inherit"
@@ -134,11 +160,7 @@ export default function Header() {
           <Link className={classes.title} to="/">
             <img src={logo} />
           </Link>
-          <a href="">
-            <Typography position="fixed" variant="h6" noWrap>
-              Partner Login
-          </Typography>
-          </a>
+
         </Toolbar>
       </AppBar>
       <SwipeableDrawer
@@ -167,6 +189,7 @@ export default function Header() {
           ))}
         </List>
         <Divider />
+
 
       </SwipeableDrawer>
 

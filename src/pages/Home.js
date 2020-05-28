@@ -10,7 +10,7 @@ import after from "../images/a (11).jpg"
 import {
     AppBar, Card, CardActions, CardContent, Drawer, Toolbar, List, Typography, Divider,
     IconButton, CssBaseline, Button, Stepper, Step, StepLabel, Grid, ButtonBase, CardActionArea,
-    CardMedia, CardHeader, Box
+    CardMedia, CardHeader, Box, FormControlLabel, Switch, Slide
 } from "@material-ui/core"
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -31,7 +31,8 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import coFlag from '../images/colorado-flag.png'
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 
@@ -45,7 +46,28 @@ import Estimate from "../pages/Estimate"
 import InstagramEmbed from 'react-instagram-embed';
 
 const drawerWidth = 240;
-
+const slideStyles = makeStyles((theme) => ({
+    root: {
+        height: 180,
+    },
+    wrapper: {
+        width: 100 + theme.spacing(2),
+    },
+    paper: {
+        zIndex: 1,
+        position: 'relative',
+        margin: theme.spacing(1),
+    },
+    svg: {
+        width: 100,
+        height: 100,
+    },
+    polygon: {
+        fill: theme.palette.common.white,
+        stroke: theme.palette.divider,
+        strokeWidth: 1,
+    },
+}));
 const centerContent = makeStyles({
     root: {
         maxHeight: 1920,
@@ -375,6 +397,7 @@ function Home() {
     const threeImage = threeImageRow();
     const card = cardstyles();
     const EstimateStepping = estimateStepper();
+    const TestimonialsStyles = slideStyles()
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -401,6 +424,11 @@ function Home() {
         setActiveStep(0);
     };
 
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = () => {
+        setChecked((prev) => !prev);
+    };
 
     return (
         <div>
@@ -408,20 +436,22 @@ function Home() {
 
             <ReactCompareImage leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
 
-            <Paper className={centerContent.root} elevation={0} >
+            <Box className={centerContent.root}  >
                 <Paper elevation={3}>
                     <Container maxWidth="md">
                         <Typography variant="h3" align="center" component="h1">
                             At High View we pride ourselves in high quality workmanship
                               </Typography>
+                        <br />
                         <hr />
 
                         <Typography color="primary" variant="body2" align="center" component="h2">
                             EVERYTHING INSTALLED BY US IS READY TO STAND THE WEATHER HERE IN COLORADO
                               </Typography>
+                        <br />
                     </Container>
                 </Paper>
-            </Paper>
+            </Box>
 
 
             <br />
@@ -547,6 +577,7 @@ function Home() {
                 </Container>
 
             </Paper>
+
             <br />
             <Divider variant="middle" />
 
@@ -577,65 +608,98 @@ function Home() {
             <br />
 
 
-            <Card>
-                <CardActionArea>
-                    <img
+            <Paper elevation={2}>
+                <Container maxWidth="md">
+                    <br />
+                    <Container>
+                        <Typography gutterBottom variant="h4" align="center" component="h7">
+                            <LoyaltyIcon fontSize="large" />
 
-                        component="img"
-                        alt="Why choose High View Construction?"
-                        height="350"
-                        src={logo}
-                        title="Why choose High View Construction?"
-                    />
-                    <CardContent>
-                        <Typography variant="h4" align="center" component="h7">
-                            Why Choose High View Construction?
-                </Typography>
+              Why Choose High View Construction?
+          </Typography>
                         <Divider variant="middle" />
-                        <Typography variant="h6" align="left" component="p1">
+                        <Typography variant="h6" align="center" component="p1">
                             No matter the weather, High View is here ready for any and all your repair needs.
-                </Typography>
+          </Typography>
                         <br />
-                        <Typography variant="p" align="right" component="p2">
+                        <Typography variant="body2" align="center" component="p2">
                             We want to make sure you’re 100% satisfied, and we go the extra mile to make your experience as enjoyable and stress-free as possible.
-                </Typography>
-                        <Typography variant="h5">
-                            Here are a few things you can expect when you work with us
+          </Typography>
+                    </Container>
+                    <br />
+                    <Typography gutterBottom variant="h5" align="center">
+                        Here are a few things you can expect when you work with us
                  </Typography>
-                        <Divider variant="inset" />
 
-                        <List>
-                            <ListItem>
-                                <Typography>
-                                    A full explanation of our recommended solutions
-                            </Typography>
-                            </ListItem>
-                            <ListItem>
-                                <Typography>
-                                    The best technicians in the business
-                            </Typography>
-                            </ListItem>
-                            <ListItem>
-                                <Typography>
-                                    A full clean up and follow up after every job
+                    <Divider variant="middle" />
 
-                            </Typography>
-                            </ListItem>
-                        </List>
-                        <Typography>
-                        </Typography>
-                    </CardContent>
-                    <CardMedia
-                        component="img"
+                    <List >
+                        <ListItem>
+                            <ListItemText inset align="center">
+                                A full explanation of our recommended solutions
+                            </ListItemText>
+                        </ListItem>
+                        <Divider variant="middle" />
+
+                        <ListItem>
+                            <ListItemText inset align="center">
+                                The best technicians in the business
+                            </ListItemText>
+                        </ListItem>
+                        <Divider variant="middle" />
+                        <ListItem>
+                            <ListItemText inset align="center">
+                                A full clean up and follow up after every job
+
+                            </ListItemText>
+                        </ListItem>
+                    </List>
+                    <Typography>
+                    </Typography>
+                    <img
                         alt="Why choose High View Construction?"
                         height="350"
-                        image={guttersBeauty}
+                        src={guttersBeauty}
                         title="Why choose High View Construction?"
-                    />
-                </CardActionArea>
 
-            </Card>
+                    />
+                </Container>
+
+            </Paper>
+            <Paper elevation={3}>
+                <Container maxWidth="md">
+                    <br />
+                    <Typography variant="h5" align="center">
+                        Testimonials
+                            </Typography>
+                    <div className={classes.wrapper}>
+                        <FormControlLabel
+                            control={<Switch checked={checked} onChange={handleChange} />}
+                            label="Show"
+                        />
+                        <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
+                            <Paper elevation={4} className={classes.paper}>
+
+                                <InstagramEmbed
+                                    url='https://www.instagram.com/p/CAgww00BkK-/'
+                                    maxWidth={320}
+                                    hideCaption={false}
+                                    containerTagName='div'
+                                    protocol=''
+                                    injectScript
+                                    onLoading={() => { }}
+                                    onSuccess={() => { }}
+                                    onAfterRender={() => { }}
+                                    onFailure={() => { }}
+                                />
+                            </Paper>
+                        </Slide>
+                    </div>
+                </Container>
+            </Paper>
+
             <br />
+
             <div className={threeImage.root}>
                 {images.map((image) => (
                     <ButtonBase
@@ -671,6 +735,7 @@ function Home() {
             <br />
             <Divider variant="middle" />
             <br />
+
             <Paper>
                 <Container maxWidth="md">
                     <br />
@@ -742,20 +807,42 @@ function Home() {
                     />
                 </Box>
             </Paper>
+
             <Grid container spacing={1}>
                 <Grid item xs={12} md={6}>
-                    <Container>
-                        <Typography variant="h5" align="center" component="h7">
-                            Locally Owned Family Business
+                    <Container maxWidth="md">
+
+                        <Paper elevation={2}>
+                            <img src={coFlag} />
+                            <Typography variant="h5" align="center" component="h7">
+
+                                Locally Owned Family Business
 
                           </Typography>
+                            <Typography align="center">
+                                We are High View Construction and we've been installing gutters here in Colorado since 2018. <br />The Owner Gilberto Sanchez has over 10 years of professional experience working with different local businesses.
+                            </Typography>
+                            <Typography align="center">
+                                We believe in providing high quality services at a reasonable price.<br /> Don't hassle with large corporations, stay local and know you will get quality service.
+                            </Typography>
+                        </Paper>
                     </Container>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <Container>
-                        <Typography variant="h5" align="center" component="h7" >
-                            Our Vendors
+                    <Container maxWidth="md">
+                        <Paper>
+                            <img src={coFlag} />
+
+                            <Typography variant="h5" align="center" component="h7" >
+                                Our Vendors
                          </Typography>
+                            <Box component="span" m={3}>
+                                <img src={coFlag} />
+                                <img src={coFlag} />
+                                <img src={coFlag} />
+
+                            </Box>
+                        </Paper>
                     </Container>
                 </Grid>
 
