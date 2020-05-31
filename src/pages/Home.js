@@ -2,11 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import ReactCompareImage from 'react-compare-image'
-import before from "../images/a (10).jpg"
-import after from "../images/a (11).jpg"
+
 import {
     AppBar, Card, CardActions, CardContent, Drawer, Toolbar, List, Typography, Divider,
     IconButton, CssBaseline, Button, Stepper, Step, StepLabel, Grid, ButtonBase, CardActionArea,
@@ -14,9 +12,9 @@ import {
 } from "@material-ui/core"
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
 import { flexbox } from '@material-ui/system';
 
+import Image from 'material-ui-image'
 
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -32,14 +30,21 @@ import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
-import coFlag from '../images/colorado-flag.png'
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 
+import coFlag from '../images/colorado-flag.png'
 import guttersBeauty from "../images/gutters_beauty.jpg"
 import guttersDamage from "../images/storm-dmg-house.gif"
 import gutterGuard from "../images/leafblaster.jpg"
 import logo from "../images/hvlogo.png"
+import lfbLogo from "../images/LFB_balckgreen@3x-1.png"
+import  lansingblg from "../images/lansing-building-products.png"
+import abcLogo from "../images/abc_logo_insite.png"
+import gutterComp1 from "../images/Guttercomp1.png"
+import gutterComp2 from "../images/Guttercomp2.png"
+import before from "../images/a (10).jpg"
+import after from "../images/a (11).jpg"
 
 import Estimate from "../pages/Estimate"
 
@@ -656,7 +661,7 @@ function Home() {
                     </List>
                     <Typography>
                     </Typography>
-                    <img
+                    <Image
                         alt="Why choose High View Construction?"
                         height="350"
                         src={guttersBeauty}
@@ -813,7 +818,7 @@ function Home() {
                     <Container maxWidth="md">
 
                         <Paper elevation={2}>
-                            <img src={coFlag} />
+                            <Image src={coFlag} />
                             <Typography variant="h5" align="center" component="h7">
 
                                 Locally Owned Family Business
@@ -831,15 +836,15 @@ function Home() {
                 <Grid item xs={12} md={6}>
                     <Container maxWidth="md">
                         <Paper>
-                            <img src={coFlag} />
+                            <Image src={coFlag} />
 
                             <Typography variant="h5" align="center" component="h7" >
                                 Our Vendors
                          </Typography>
                             <Box component="span" m={3}>
-                                <img src={coFlag} />
-                                <img src={coFlag} />
-                                <img src={coFlag} />
+                                <Image src={coFlag} />
+                                <Image src={coFlag} />
+                                <Image src={coFlag} />
 
                             </Box>
                         </Paper>

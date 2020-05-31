@@ -18,13 +18,15 @@
     "gatsby-plugin-sharp": "^2.6.4",
     "gatsby-source-filesystem": "^2.3.4",
     "gatsby-transformer-sharp": "^2.5.2",
+    "material-ui-image": "^3.2.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-compare-image": "^2.0.4",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
     "react-iframe": "^1.8.0",
-    "react-instagram-embed": "^1.5.0"
+    "react-instagram-embed": "^1.5.0",
+    "react-window-size": "^1.2.2"
   },
   "devDependencies": {
     "prettier": "2.0.5"

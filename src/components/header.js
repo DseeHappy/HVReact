@@ -1,13 +1,19 @@
 import React from 'react';
+
+import windowSize from 'react-window-size';
+
+
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import { Typography, Button, Box } from '@material-ui/core';
+import { Typography, Button, Box, Container, useScrollTrigger, SwipeableDrawer, useMediaQuery  } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+
+
+
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -17,10 +23,19 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+
 import { Link } from "gatsby"
+
 import logo from "../images/hv.png"
 
-const drawerWidth = 240;
+import Estimate from "../pages/Estimate"
+
+const drawerWidth = 480;
+
+const smallestScreen = useMediaQuery('(min-width:600px)');
+
+console.log("window Size", windowSize.windowWidth);
+console.log("window Size", windowSize.height);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,25 +50,25 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    width: `@media(max-width: 100% )`,
+    marginLeft:  `@media(max-width: 100% )`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
   },
   hide: {
-    display: 'none',
+    display: '@media(max-width:600px)',
   },
   drawer: {
-    width: drawerWidth,
+    width:  `@media(max-width: 100% )`,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width:  `@media(max-width: 100% )`,
   },
   drawerHeader: {
     display: 'flex',
@@ -70,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: - `@media(max-width: 100% )`,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -88,27 +103,38 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     alignSelf: 'flex-end',
-    borderRadius: '5px 60px 5px 60px',
-    backgroundColor: '#f5f5f5',
     maxWidth: '240px',
     minHeight: '60px',
-    marginBottom: '-60px',
     overflow: 'visible',
     zIndex: '9',
     padding: '.5rem'
 
   },
-  topMenu: {
-    maxHeight: 80,
-    alignItems: 'flex-start',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(0
-      ),
+  hideItems:{
+    display: 'none'
   }
+
 }));
 
 
-export default function Header() {
+function ElevationScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+
+export default function Header(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -125,48 +151,48 @@ export default function Header() {
     <div className={classes.root}>
       <CssBaseline />
 
+      <AppBar>
+        <Toolbar id="back-to-top-anchor" variant="dense" className={classes.Toolbar}>
 
-      <AppBar
-        position="static"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar className={classes.topMenu}>
-
-              <Button href="https://books.zoho.com/portal/highviewconstruction/login" noWrap variant="text" color="secondary">
-                720-325-9473
-          </Button>
-              <Button href="https://books.zoho.com/portal/highviewconstruction/login" noWrap variant="text" color="secondary">
-                GilbertoSanchez@highview5280.com
-          </Button>
-          <Button href="https://books.zoho.com/portal/highviewconstruction/login" noWrap variant="text" color="secondary">
-             Login
-          </Button>
+          <Button href="tel:720-325-9473" noWrap variant="text" color="secondary">
+            720-325-9473
+</Button>
+          <Button href="mailto:GilbertoSanchez@highview5280.com" noWrap variant="text" color="secondary">
+            GilbertoSanchez@highview5280.com
+</Button>
+          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary">
+            Login
+</Button>
 
 
         </Toolbar>
-        <br />
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link className={classes.title} to="/">
-            <img src={logo} />
-          </Link>
 
-        </Toolbar>
+        <ElevationScroll {...props}>
+
+          <Toolbar className={classes.Toolbar}>
+            <img className={classes.title} src={logo} />
+
+            <Button href="tel:720-325-9473" className={classes.hidePhone} noWrap variant="text" color="secondary">
+              720-325-9473
+</Button>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Estimate />
+          </Toolbar>
+        </ElevationScroll>
       </AppBar>
+
       <SwipeableDrawer
         className={classes.drawer}
         variant="persistent"
-        anchor="left"
+        anchor="top"
         open={open}
         classes={{
           paper: classes.drawerPaper,
@@ -192,7 +218,6 @@ export default function Header() {
 
 
       </SwipeableDrawer>
-
-    </div>
+    </div >
   );
 }
