@@ -1,6 +1,6 @@
 import React from 'react';
+import Iframe from 'react-iframe'
 
-import windowSize from 'react-window-size';
 
 
 import clsx from 'clsx';
@@ -9,9 +9,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import { Typography, Button, Box, Container, useScrollTrigger, SwipeableDrawer, useMediaQuery  } from '@material-ui/core';
+import { Typography, Button, Box, Container, useScrollTrigger, SwipeableDrawer, useMediaQuery, ClickAwayListener } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
-
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 
 import IconButton from '@material-ui/core/IconButton';
@@ -23,6 +25,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import PhoneIcon from '@material-ui/icons/Phone';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 import { Link } from "gatsby"
 
@@ -30,20 +35,23 @@ import logo from "../images/hv.png"
 
 import Estimate from "../pages/Estimate"
 
-const drawerWidth = 480;
-
-const smallestScreen = useMediaQuery('(min-width:600px)');
-
-console.log("window Size", windowSize.windowWidth);
-console.log("window Size", windowSize.height);
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexGrow: 1,
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexGrow: 1,
+
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexGrow: 1,
+
+    }
 
   },
   appBar: {
+
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -51,24 +59,34 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarShift: {
     width: `@media(max-width: 100% )`,
-    marginLeft:  `@media(max-width: 100% )`,
+    marginLeft: `@media(max-width: 100% )`,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
-    marginLeft: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto',
+      width: 'auto',
+      paddingLeft: 'auto',
+      marginLeft: 'auto'
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+
+    }
+
   },
   hide: {
     display: '@media(max-width:600px)',
   },
   drawer: {
-    width:  `@media(max-width: 100% )`,
+    width: `@media(max-width: 100% )`,
     flexShrink: 0,
   },
   drawerPaper: {
-    width:  `@media(max-width: 100% )`,
+    width: `@media(max-width: 100% )`,
   },
   drawerHeader: {
     display: 'flex',
@@ -80,12 +98,13 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: - `@media(max-width: 100% )`,
+    marginLeft: `@media(max-width: 100% )`,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -95,24 +114,162 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   toolbar: {
-    minHeight: 80,
-    alignItems: 'flex-start',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(0),
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      backgroundColor: '#ffff'
+    },
+    [theme.breakpoints.up('md')]: {
+
+      alignItems: 'center'
+    },
+    [theme.breakpoints.up('lg')]: {
+      padding: 'auto',
+      margin: 'auto',
+      alignSelf: 'center'
+
+
+    }
   },
-  title: {
-    flexGrow: 1,
-    alignSelf: 'flex-end',
-    maxWidth: '240px',
-    minHeight: '60px',
+  logo: {
+
+    minHeight: '25px',
     overflow: 'visible',
-    zIndex: '9',
-    padding: '.5rem'
+    marginBottom: '0px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '120px',
+
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '140px',
+      marginLeft: 'auto',
+      paddingLeft: 'auto'
+
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
+    [theme.breakpoints.up('xl')]: {
+      marginLeft: 'auto',
+    }
+  },
+  hidePhone: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      height: 'auto',
+      padding: 'auto',
+      margin: 'auto',
+      fontSize: '25px'
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+
+    }
+  },
+  topToolbar: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      width: '100%',
+      padding: 'auto',
+      margin: 'auto',
+      maxHeight: '5rem',
+      backgroundColor: '#fff',
+
+
+    }
+  },
+  largeNavBar: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      backgroundColor: 'red',
+      padding: 'auto',
+      margin: 'auto'
+    },
+    [theme.breakpoints.up('lg')]: {
+      display: 'flex',
+      backgroundColor: 'green',
+      margin: 'auto'
+
+    }
+  },
+
+  estimateBtnRight: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+      height: '6rem',
+      width: '14rem',
+      margin: 'auto',
+      padding: 'auto',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '-10.4rem'
+    }
+  },
+  estimateBtnBottom: {
+    [theme.breakpoints.down('sm')]: {
+      height: '100px',
+      width: '100%',
+      margin: '0px',
+      padding: '0px',
+      maxHeight: '3.6rem'
+
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    },
 
   },
-  hideItems:{
-    display: 'none'
-  }
+  toolbarBottom: {
+    [theme.breakpoints.down('sm')]: {
+      margin: '0px',
+      padding: '0px',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    },
+  },
+  topToolbarBtns: {
+    [theme.breakpoints.up('md')]: {
+      padding: 'auto',
+      margin: 'auto',
+      alignItems: 'flex-end'
+    }
+  },
+  largeNavBarBtns: {
+    [theme.breakpoints.up('md')]: {
+      padding: 'auto',
+      margin: '.8rem'
+    },
+    [theme.breakpoints.up('lg')]: {
+      padding: 'auto',
+      margin: '.8rem',
+      justifyContent: 'space-between'
+    }
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+
 
 }));
 
@@ -147,20 +304,44 @@ export default function Header(props) {
     setOpen(false);
   };
 
+  const [openBtn, btnOpen] = React.useState(false);
+
+  const handleBtnOpen = () => {
+    btnOpen(true);
+  };
+
+  const handleBtnClose = () => {
+    btnOpen(false);
+  };
+
   return (
     <div className={classes.root}>
-      <CssBaseline />
 
       <AppBar>
-        <Toolbar id="back-to-top-anchor" variant="dense" className={classes.Toolbar}>
+        <Toolbar id="back-to-top-anchor" variant="dense" className={classes.topToolbar}>
+          <Button href="tel:720-325-9473" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <PhoneIcon />
+      720-325-9473
+</Button>
+          <Divider orientation="vertical" flexItem />
+          <Button href="mailto:GilbertoSanchez@highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <MailIcon />
+           GilbertoSanchez@highview5280.com
+</Button>
 
-          <Button href="tel:720-325-9473" noWrap variant="text" color="secondary">
-            720-325-9473
-</Button>
-          <Button href="mailto:GilbertoSanchez@highview5280.com" noWrap variant="text" color="secondary">
-            GilbertoSanchez@highview5280.com
-</Button>
-          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary">
+          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <FacebookIcon />
+
+          </Button>
+          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <InstagramIcon />
+
+          </Button>
+
+
+          <Divider orientation="vertical" flexItem />
+
+          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
             Login
 </Button>
 
@@ -170,11 +351,24 @@ export default function Header(props) {
         <ElevationScroll {...props}>
 
           <Toolbar className={classes.Toolbar}>
-            <img className={classes.title} src={logo} />
+            <Link src="../pages/Home">
+              <Button >
+                <img className={classes.logo} src={logo} />
 
+              </Button>
+            </Link>
             <Button href="tel:720-325-9473" className={classes.hidePhone} noWrap variant="text" color="secondary">
               720-325-9473
 </Button>
+            <List className={classes.largeNavBar}>
+              {['Residential', 'Commercial', 'Partner'].map((text, index) => (
+                <Link to={text}>
+                  <ListItem className={classes.largeNavBarBtns} alignItems="flex-start" button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              ))}
+            </List>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -184,9 +378,48 @@ export default function Header(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Estimate />
+            <Button className={classes.estimateBtnRight} variant="contained" color="secondary" type="button" onClick={handleBtnOpen}>
+              Free Estimate
+          </Button>
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              className={classes.modal}
+              id="estimateModal"
+              open={openBtn}
+              onClose={handleBtnClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={openBtn}>
+                <div className={classes.paper}>
+                  <h2 id="transition-modal-title">Free Estimate</h2>
+
+                  <Iframe
+                    width="1080px"
+                    height="950rem"
+                    display="initial"
+                    position="relative"
+                    src='https://forms.zohopublic.com/highviewconstruction/form/ContactForm/formperma/uDcbOwG1jziah7w4RknQcRGodfTHHL3Hl7NGGH1_SsE'
+                  >
+                  </Iframe>
+                  <Estimate />
+                </div>
+              </Fade>
+            </Modal>
+
           </Toolbar>
+
         </ElevationScroll>
+
+        <Toolbar className={classes.toolbarBottom}>
+          <Button className={classes.estimateBtnBottom} variant="contained" color="secondary" type="button" >
+            Free Estimate
+        </Button>
+        </Toolbar>
       </AppBar>
 
       <SwipeableDrawer
@@ -208,7 +441,6 @@ export default function Header(props) {
           {['Residential', 'Commercial', 'Partner'].map((text, index) => (
             <Link to={text}>
               <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             </Link>
@@ -218,6 +450,7 @@ export default function Header(props) {
 
 
       </SwipeableDrawer>
+
     </div >
   );
 }
