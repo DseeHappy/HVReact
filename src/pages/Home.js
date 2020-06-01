@@ -51,6 +51,11 @@ import Estimate from "../pages/Estimate"
 import InstagramEmbed from 'react-instagram-embed';
 
 const drawerWidth = 240;
+const ctaImageStyles = makeStyles({
+    ctaImageTop:{
+        maxHeight:'300px'
+    }
+})
 const slideStyles = makeStyles((theme) => ({
     root: {
         height: 180,
@@ -398,7 +403,7 @@ const images = [
 ];
 
 function Home() {
-    const classes = useStyles();
+    const classes = ctaImageStyles();
     const threeImage = threeImageRow();
     const card = cardstyles();
     const EstimateStepping = estimateStepper();
@@ -439,7 +444,7 @@ function Home() {
         <div>
             <CssBaseline />
 
-            <ReactCompareImage leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
+            <ReactCompareImage className={classes.ctaImageTop} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
 
             <Box className={centerContent.root}  >
                 <Paper elevation={3}>

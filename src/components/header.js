@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import { Typography, Button, Box, Container, useScrollTrigger, SwipeableDrawer, useMediaQuery, ClickAwayListener } from '@material-ui/core';
+import { Typography, Button, Box, Container, useScrollTrigger, SwipeableDrawer, useMediaQuery, ClickAwayListener, Slide, Zoom,Fab } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -28,16 +28,24 @@ import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import { Link } from "gatsby"
 
 import logo from "../images/hv.png"
 
 import Estimate from "../pages/Estimate"
-
+const scrollToTopStyles = makeStyles((theme) => ({
+  root: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
 
 const useStyles = makeStyles((theme) => ({
   root: {
+
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexGrow: 1,
@@ -51,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
   },
   appBar: {
-
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -114,10 +121,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   toolbar: {
-
+    width: '100%',
+    backgroundColor: '#ffff',
     [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      backgroundColor: '#ffff'
+
     },
     [theme.breakpoints.up('md')]: {
 
@@ -142,16 +149,39 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('md')]: {
       maxWidth: '140px',
+
+
+    },
+    [theme.breakpoints.up('lg')]: {
+
+    },
+    [theme.breakpoints.up('xl')]: {
+
+
+    }
+  }, btnLogo: {
+
+    minHeight: '25px',
+    overflow: 'visible',
+    marginBottom: '0px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '120px',
+
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '140px',
       marginLeft: 'auto',
       paddingLeft: 'auto'
 
     },
     [theme.breakpoints.up('lg')]: {
-      marginLeft: 'auto',
-      marginRight: 'auto'
+      marginLeft: '6rem',
+      marginRight: '1rem'
     },
     [theme.breakpoints.up('xl')]: {
-      marginLeft: 'auto',
+      marginLeft: '22rem',
+      marginRight: '2rem'
+
     }
   },
   hidePhone: {
@@ -190,14 +220,13 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('md')]: {
       display: 'flex',
-      backgroundColor: 'red',
-      padding: 'auto',
+      paddingBottom: '0rem',
       margin: 'auto'
     },
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
-      backgroundColor: 'green',
-      margin: 'auto'
+      margin: 'auto',
+      paddingBottom: '0rem',
 
     }
   },
@@ -214,7 +243,7 @@ const useStyles = makeStyles((theme) => ({
       padding: 'auto',
     },
     [theme.breakpoints.up('lg')]: {
-      marginLeft: '-10.4rem'
+      marginLeft: '1.4rem'
     }
   },
   estimateBtnBottom: {
@@ -248,6 +277,8 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   largeNavBarBtns: {
+    color: 'white',
+    textDecoration: 'none',
     [theme.breakpoints.up('md')]: {
       padding: 'auto',
       margin: '.8rem'
@@ -256,7 +287,8 @@ const useStyles = makeStyles((theme) => ({
       padding: 'auto',
       margin: '.8rem',
       justifyContent: 'space-between'
-    }
+    },
+    textAlign: 'center'
   },
   modal: {
     display: 'flex',
@@ -269,9 +301,28 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  drawerBtns: {
+    color: 'black',
+    textDecoration: 'none',
+    verticalAlign: 'middle'
+  }
 
 
 }));
+
+function HideOnScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
 
 
 function ElevationScroll(props) {
@@ -290,9 +341,39 @@ function ElevationScroll(props) {
   });
 }
 
+function ScrollTop(props) {
+  const { children, window } = props;
+  const classes = useStyles();
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <div onClick={handleClick} role="presentation" className={classes.root}>
+        {children}
+      </div>
+    </Zoom>
+  );
+}
+
 
 export default function Header(props) {
   const classes = useStyles();
+  const scrollToTopClasses = scrollToTopStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -316,112 +397,118 @@ export default function Header(props) {
 
   return (
     <div className={classes.root}>
+      <HideOnScroll {...props}>
 
-      <AppBar>
-        <Toolbar id="back-to-top-anchor" variant="dense" className={classes.topToolbar}>
-          <Button href="tel:720-325-9473" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
-            <PhoneIcon />
+        <AppBar>
+          <Toolbar id="back-to-top-anchor" variant="dense" className={classes.topToolbar}>
+            <Button href="tel:720-325-9473" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+              <PhoneIcon />
       720-325-9473
 </Button>
-          <Divider orientation="vertical" flexItem />
-          <Button href="mailto:GilbertoSanchez@highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
-            <MailIcon />
+            <Divider orientation="vertical" flexItem />
+            <Button href="mailto:GilbertoSanchez@highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+              <MailIcon />
            GilbertoSanchez@highview5280.com
 </Button>
 
-          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
-            <FacebookIcon />
+            <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+              <FacebookIcon />
 
-          </Button>
-          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
-            <InstagramIcon />
+            </Button>
+            <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+              <InstagramIcon />
 
-          </Button>
+            </Button>
 
 
-          <Divider orientation="vertical" flexItem />
+            <Divider orientation="vertical" flexItem />
 
-          <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
-            Login
+            <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+              Login
 </Button>
 
-
-        </Toolbar>
-
-        <ElevationScroll {...props}>
-
-          <Toolbar className={classes.Toolbar}>
-            <Link src="../pages/Home">
-              <Button >
-                <img className={classes.logo} src={logo} />
-
-              </Button>
-            </Link>
-            <Button href="tel:720-325-9473" className={classes.hidePhone} noWrap variant="text" color="secondary">
-              720-325-9473
-</Button>
-            <List className={classes.largeNavBar}>
-              {['Residential', 'Commercial', 'Partner'].map((text, index) => (
-                <Link to={text}>
-                  <ListItem className={classes.largeNavBarBtns} alignItems="flex-start" button key={text}>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Button className={classes.estimateBtnRight} variant="contained" color="secondary" type="button" onClick={handleBtnOpen}>
-              Free Estimate
-          </Button>
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              id="estimateModal"
-              open={openBtn}
-              onClose={handleBtnClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <Fade in={openBtn}>
-                <div className={classes.paper}>
-                  <h2 id="transition-modal-title">Free Estimate</h2>
-
-                  <Iframe
-                    width="1080px"
-                    height="950rem"
-                    display="initial"
-                    position="relative"
-                    src='https://forms.zohopublic.com/highviewconstruction/form/ContactForm/formperma/uDcbOwG1jziah7w4RknQcRGodfTHHL3Hl7NGGH1_SsE'
-                  >
-                  </Iframe>
-                  <Estimate />
-                </div>
-              </Fade>
-            </Modal>
 
           </Toolbar>
 
-        </ElevationScroll>
+          <ElevationScroll {...props}>
 
-        <Toolbar className={classes.toolbarBottom}>
-          <Button className={classes.estimateBtnBottom} variant="contained" color="secondary" type="button" >
-            Free Estimate
+            <Toolbar className={classes.Toolbar}>
+              <Link src="../pages/Home">
+                <Button className={classes.btnLogo}>
+                  <img className={classes.logo} src={logo} />
+
+                </Button>
+              </Link>
+              <Button href="tel:720-325-9473" className={classes.hidePhone} noWrap variant="text" color="secondary">
+                720-325-9473
+</Button>
+              <List className={classes.largeNavBar}>
+                {['Residential', 'Commercial', 'Partner'].map((text, index) => (
+                  <Link className={classes.largeNavBarBtns} to={text}>
+                    <ListItem className={classes.largeNavBarBtns} alignItems="flex-start" button key={text}>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </Link>
+                ))}
+              </List>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Button className={classes.estimateBtnRight} variant="contained" color="secondary" type="button" onClick={handleBtnOpen}>
+                Free Estimate
+          </Button>
+              <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                id="estimateModal"
+                open={openBtn}
+                onClose={handleBtnClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <Fade in={openBtn}>
+                  <div className={classes.paper}>
+                    <h2 id="transition-modal-title">Free Estimate</h2>
+
+                    <Iframe
+                      width="1080px"
+                      height="950rem"
+                      display="initial"
+                      position="relative"
+                      src='https://forms.zohopublic.com/highviewconstruction/form/ContactForm/formperma/uDcbOwG1jziah7w4RknQcRGodfTHHL3Hl7NGGH1_SsE'
+                    >
+                    </Iframe>
+                    <Estimate />
+                  </div>
+                </Fade>
+              </Modal>
+
+            </Toolbar>
+
+          </ElevationScroll>
+
+          <Toolbar className={classes.toolbarBottom}>
+            <Button className={classes.estimateBtnBottom} variant="contained" color="secondary" type="button" onClick={handleBtnOpen}>
+              Free Estimate
         </Button>
-        </Toolbar>
-      </AppBar>
-
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
+      <ScrollTop {...props}>
+      <Fab color="secondary" size="small" aria-label="scroll back to top">
+        <KeyboardArrowUpIcon />
+      </Fab>
+    </ScrollTop>
       <SwipeableDrawer
         className={classes.drawer}
         variant="persistent"
@@ -437,9 +524,9 @@ export default function Header(props) {
           </IconButton>
         </div>
         <Divider />
-        <List>
+        <List >
           {['Residential', 'Commercial', 'Partner'].map((text, index) => (
-            <Link to={text}>
+            <Link className={classes.drawerBtns} to={text}>
               <ListItem button key={text}>
                 <ListItemText primary={text} />
               </ListItem>
