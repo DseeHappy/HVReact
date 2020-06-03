@@ -2,15 +2,15 @@
 import React from "react"
 import { PageProps, Link } from "gatsby"
 
+import mainImage from "../images/Photo_Product_13.jpg"
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const Residential = (props: PageProps) => (
   <Layout>
     <SEO title="Residential Services" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2 ({props.path})</p>
-    <Link to="/">Go back to the homepage</Link>
+    <img src={mainImage}/>
   </Layout>
 )
 

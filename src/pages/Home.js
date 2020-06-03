@@ -413,15 +413,51 @@ const modalStyles = makeStyles((theme) => ({
 
 }));
 
-const vendorStyles = makeStyles((theme) =>({
-    root:{
-        display:'box'
+const vendorStyles = makeStyles((theme) => ({
+    root: {
+        display: 'block'
     },
-    img:{
-        alignSelf:'center',
-        padding:"auto",
-        margin:'auto'
-    }
+    img: {
+        padding: "auto",
+        margin: 'auto',
+        objectFit: 'contain',
+    },
+    imgContainer: {
+        display: 'inline-block',
+
+
+    },
+    localContainer: {
+        display: 'box'
+    },
+    vendorContainer: {
+        display: 'box',
+        margin: 'auto',
+        padding: 'auto',
+        objectFit: 'contain',
+
+
+    },
+    brandsContainer: {
+        display: 'flex',
+        maxWidth: '25rem',
+
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+        },
+        [theme.breakpoints.up('md')]: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        }
+    },
+    vendorWrapper: {
+        padding: '2.5rem'
+    },
+    titleContainer: {
+        display: 'block',
+        textAlign: 'center'
+    },
+
 }));
 
 const images = [
@@ -721,7 +757,7 @@ function Home() {
 
             </Paper>
             <Paper elevation={3}>
-               <Testimonials/>
+                <Testimonials />
             </Paper>
 
             <br />
@@ -836,40 +872,72 @@ function Home() {
                 </Container>
             </Paper>
 
-            <Grid container spacing={1}>
-                <Grid item xs={12} md={6}>
 
-                        <Paper  elevation={2}>
-                            <img classname={vendorClasses.img} src={coFlag} />
+            <Paper className={vendorClasses.localContainer} elevation={2}>
+                <Container className={vendorClasses.vendorWrapper}>
+                    <Container className={vendorClasses.imgContainer}>
+                        <img classname={vendorClasses.img} src={coFlag} />
+
+                    </Container>
+                    <Container className={vendorClasses.textContainer}>
+                        <Container className={vendorClasses.titleContainer}>
                             <Typography variant="h5" align="center" component="h7">
 
                                 Locally Owned Family Business
 
-                          </Typography>
-                            <Typography align="center">
-                                We are High View Construction and we've been installing gutters here in Colorado since 2018. <br />The Owner Gilberto Sanchez has over 10 years of professional experience working with different local businesses.
-                            </Typography>
-                            <Typography align="center">
-                                We believe in providing high quality services at a reasonable price.<br /> Don't hassle with large corporations, stay local and know you will get quality service.
-                            </Typography>
-                        </Paper>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                        <Paper classname={vendorClasses.img}>
-                            <img src={logo} />
-
-                            <Typography variant="h5" align="center" component="h7" >
-                                Our Vendors
                          </Typography>
-                         <br/>
-                                <img src={lfbLogo} />
-                                <img src={lansingblg} />
-                                <img src={abcLogo} />
+                        </Container>
+                        <Typography align="center">
+                            We are High View Construction and we've been installing gutters here in Colorado since 2018. <br />The Owner Gilberto Sanchez has over 10 years of professional experience working with different local businesses.
+                           </Typography>
+                        <br />
+                        <Divider variant="middle" />
+                        <br />
+                        <Typography align="center">
+                            <b>We believe in providing high quality services at a reasonable price.</b><br /> <em>Don't hassle with large corporations, stay local and know you will get quality service.</em>
+                        </Typography>
+                    </Container>
+                </Container>
+            </Paper>
 
-                        </Paper>
-                </Grid>
 
-            </Grid>
+            <Paper className={vendorClasses.vendorContainer} >
+                <Container className={vendorClasses.vendorWrapper}>
+
+
+                    <Container className={vendorClasses.titleContainer}>
+                        <Typography variant="h5" align="center" component="h7" >
+                            <em>
+                                Our Vendors
+                            </em>
+                        </Typography>
+                    </Container>
+                    <br />
+                    <Divider variant="middle" />
+                    <br />
+                    <Container className={vendorClasses.brandsWrapper}>
+                        <Container className={vendorClasses.brandsContainer}>
+                            <Button href="https://www.leafblaster.com/features/">
+                                <img classname={vendorClasses.img} src={lfbLogo} />
+
+                            </Button>
+
+                        </Container>
+                        <Container className={vendorClasses.brandsContainer}>
+                            <Button href="https://lansingbp.com/product/gutters/">
+                                <img classname={vendorClasses.img} src={lansingblg} />
+
+                            </Button>
+                        </Container>
+                        <Container className={vendorClasses.brandsContainer}>
+                            <Button href="https://www.abcsupply.com/products/rain-gutters-guards-downspouts/aluminum-rain-gutters-guards-downspouts/">
+                                <img classname={vendorClasses.img} src={abcLogo} />
+                            </Button>
+
+                        </Container>
+                    </Container>
+                </Container>
+            </Paper>
         </div>
 
     )
