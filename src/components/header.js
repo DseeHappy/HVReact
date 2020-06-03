@@ -29,6 +29,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import AngiesList from '../images/angieslistBtn.png'
 
 import { Link } from "gatsby"
 
@@ -120,35 +121,17 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
-  toolbar: {
-    width: '100%',
-    backgroundColor: '#ffff',
-    [theme.breakpoints.down('sm')]: {
 
-    },
-    [theme.breakpoints.up('md')]: {
-
-      alignItems: 'center'
-    },
-    [theme.breakpoints.up('lg')]: {
-      padding: 'auto',
-      margin: 'auto',
-      alignSelf: 'center'
-
-
-    }
-  },
   logo: {
-
-    minHeight: '25px',
+    
     overflow: 'visible',
     marginBottom: '0px',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '120px',
+      maxWidth: '90px',
 
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '140px',
+      maxWidth: '110px',
 
 
     },
@@ -161,7 +144,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }, btnLogo: {
 
-    minHeight: '25px',
     overflow: 'visible',
     marginBottom: '0px',
     [theme.breakpoints.down('sm')]: {
@@ -237,10 +219,11 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('md')]: {
       display: 'block',
-      height: '6rem',
-      width: '14rem',
+      height: '5rem',
+      width: '12rem',
       margin: 'auto',
       padding: 'auto',
+      fontSize:'20px'
     },
     [theme.breakpoints.up('lg')]: {
       marginLeft: '1.4rem'
@@ -273,7 +256,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       padding: 'auto',
       margin: 'auto',
-      alignItems: 'flex-end'
+      alignItems: 'flex-end',
     }
   },
   largeNavBarBtns: {
@@ -304,8 +287,17 @@ const useStyles = makeStyles((theme) => ({
   drawerBtns: {
     color: 'black',
     textDecoration: 'none',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
+    padding:'0rem',
+    margin:'0rem'
+  },
+  btnImage:{
+    maxHeight:'35px',
+    padding:'0px',
+    alignItems: 'center',
+    margin:'0px'
   }
+  
 
 
 }));
@@ -415,9 +407,12 @@ export default function Header(props) {
               <FacebookIcon />
 
             </Button>
-            <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <Button href="https://www.instagram.com/highviewgutterservices/" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
               <InstagramIcon />
 
+            </Button>
+             <Button href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"  noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+             <img className={classes.btnImage} src={AngiesList}/>
             </Button>
 
 
@@ -445,7 +440,7 @@ export default function Header(props) {
               <List className={classes.largeNavBar}>
                 {['Residential', 'Commercial', 'Partner'].map((text, index) => (
                   <Link className={classes.largeNavBarBtns} to={text}>
-                    <ListItem className={classes.largeNavBarBtns} alignItems="flex-start" button key={text}>
+                    <ListItem alignItems="flex-start" button key={text}>
                       <ListItemText primary={text} />
                     </ListItem>
                   </Link>

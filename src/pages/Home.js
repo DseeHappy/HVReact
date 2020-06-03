@@ -8,7 +8,7 @@ import ReactCompareImage from 'react-compare-image'
 import {
     AppBar, Card, CardActions, CardContent, Drawer, Toolbar, List, Typography, Divider,
     IconButton, CssBaseline, Button, Stepper, Step, StepLabel, Grid, ButtonBase, CardActionArea,
-    CardMedia, CardHeader, Box, FormControlLabel, Switch, Slide
+    CardMedia, CardHeader, Box, FormControlLabel, Switch, Slide, Modal, Backdrop, Fade
 } from "@material-ui/core"
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -33,6 +33,9 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 
+import Iframe from 'react-iframe'
+
+
 import coFlag from '../images/colorado-flag.png'
 import guttersBeauty from "../images/gutters_beauty.jpg"
 import guttersDamage from "../images/storm-dmg-house.gif"
@@ -47,13 +50,15 @@ import before from "../images/a (10).jpg"
 import after from "../images/a (11).jpg"
 
 import Estimate from "../pages/Estimate"
+import Testimonials from '../pages/Testimonials'
 
-import InstagramEmbed from 'react-instagram-embed';
+import InstagramEmbed from 'react-instagram-embed'
+
 
 const drawerWidth = 240;
 const ctaImageStyles = makeStyles({
-    ctaImageTop:{
-        maxHeight:'300px'
+    root: {
+        height: '1920px'
     }
 })
 const slideStyles = makeStyles((theme) => ({
@@ -80,12 +85,11 @@ const slideStyles = makeStyles((theme) => ({
 }));
 const centerContent = makeStyles({
     root: {
-        maxHeight: 1920,
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+        marginTop: '-1.3rem',
+        backgroundColor: '#398',
+
     },
-    Paper: {
+    Container: {
 
     },
 
@@ -163,23 +167,33 @@ const estimateStepper = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
     },
+    estimateBtn: {
+        width: '100%'
+    }
 }));
-const cardstyles = makeStyles({
-    root: {
-        maxHeight: 600,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
+const cardstyles = makeStyles((theme) => (
+    {
+        root: {
+        },
+        bullet: {
+            display: 'inline-block',
+            margin: '0 2px',
+            transform: 'scale(0.8)',
+        },
+        title: {
+            fontSize: 14,
+        },
+        pos: {
+            marginBottom: 12,
+        },
+        [theme.breakpoints.up('md')]: {
+            root: {
+                minHeight: '600px',
+
+            }
+        }
+    }
+));
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -352,12 +366,13 @@ const useColorlibStepIconStyles = makeStyles({
     },
     active: {
         backgroundImage:
-            'linear-gradient( 136deg, rgb(233,400,808) 0%, rgb(233,64,87) 50%, rgb(138,350,800) 100%)',
+            'linear-gradient( 136deg, rgb(233,64,87)  0%, rgb(233,64,87) 100%)',
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+
     },
     completed: {
         backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+            'linear-gradient( 136deg, rgb(233,64,87)  0%, rgb(233,64,87) 50%, rgb(233,64,87)  100%)',
     },
 });
 
@@ -381,8 +396,33 @@ function ColorlibStepIcon(props) {
             {icons[String(props.icon)]}
         </div>
     );
-}
+};
 
+const modalStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+
+}));
+
+const vendorStyles = makeStyles((theme) =>({
+    root:{
+        display:'box'
+    },
+    img:{
+        alignSelf:'center',
+        padding:"auto",
+        margin:'auto'
+    }
+}));
 
 const images = [
     {
@@ -402,13 +442,15 @@ const images = [
     },
 ];
 
+
 function Home() {
     const classes = ctaImageStyles();
     const threeImage = threeImageRow();
     const card = cardstyles();
     const EstimateStepping = estimateStepper();
-    const TestimonialsStyles = slideStyles()
-    const theme = useTheme();
+    const centerClasses = centerContent();
+    const modalClasses = modalStyles();
+    const vendorClasses = vendorStyles();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -439,29 +481,35 @@ function Home() {
     const handleChange = () => {
         setChecked((prev) => !prev);
     };
+    const [modalOpen, modalSetOpen] = React.useState(false);
 
+    const handleModalOpen = () => {
+        setOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setOpen(false);
+    };
     return (
         <div>
             <CssBaseline />
 
-            <ReactCompareImage className={classes.ctaImageTop} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
+            <ReactCompareImage className={classes.root} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
 
-            <Box className={centerContent.root}  >
-                <Paper elevation={3}>
-                    <Container maxWidth="md">
-                        <Typography variant="h3" align="center" component="h1">
-                            At High View we pride ourselves in high quality workmanship
-                              </Typography>
-                        <br />
-                        <hr />
+            <Paper className={centerClasses.root} elevation={2}>
+                <Container maxWidth="md">
+                    <Typography variant="h4" align="center" component="h1">
+                        At High View we pride ourselves in high quality workmanship
 
-                        <Typography color="primary" variant="body2" align="center" component="h2">
-                            EVERYTHING INSTALLED BY US IS READY TO STAND THE WEATHER HERE IN COLORADO
                               </Typography>
-                        <br />
-                    </Container>
-                </Paper>
-            </Box>
+                    <Divider variant="middle" />
+                    <Typography color="primary" variant="body2" align="center" component="h2">
+                        Everything installed by us is ready to stand the weather here in Colorado
+
+                              </Typography>
+                    <br />
+                </Container>
+            </Paper>
 
 
             <br />
@@ -473,12 +521,12 @@ function Home() {
                 <Container maxWidth="lg">
                     <Grid container alignItems="center" spacing={3}>
                         <Grid item container alignItems="center" xs={12} md={4}>
-                            <Card className={card.root}>
-                                <CardActionArea>
+                            <Card >
+                                <CardActionArea className={card.root}>
                                     <CardMedia
                                         component="img"
                                         alt="Beautiful gutter installation"
-                                        height="140"
+                                        height="340"
                                         image={guttersBeauty}
                                         title="Beautiful gutter installation"
                                     />
@@ -501,23 +549,16 @@ function Home() {
            </Typography>
                                     </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                        Share
-         </Button>
-                                    <Button size="small" color="primary">
-                                        Learn More
-         </Button>
-                                </CardActions>
+
                             </Card>
                         </Grid>
                         <Grid item container xs={12} md={4}>
-                            <Card className={card.root}>
-                                <CardActionArea>
+                            <Card >
+                                <CardActionArea className={card.root}>
                                     <CardMedia
                                         component="img"
                                         alt="LeafBlaster Brand Gutter Guard"
-                                        height="140"
+                                        height="360"
                                         image={gutterGuard}
                                         title="LeafBlaster Brand Gutter Guard"
                                     />
@@ -537,23 +578,16 @@ function Home() {
        </Typography>
                                     </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                        Share
-     </Button>
-                                    <Button size="small" color="primary">
-                                        Learn More
-     </Button>
-                                </CardActions>
+
                             </Card>
                         </Grid>
                         <Grid item container xs={12} md={4}>
-                            <Card className={card.root}>
-                                <CardActionArea>
+                            <Card >
+                                <CardActionArea className={card.root}>
                                     <CardMedia
                                         component="img"
                                         alt="Damaged Gutters on house due to storm "
-                                        height="140"
+                                        height="360"
                                         image={guttersDamage}
                                         title="Damaged Gutters on house"
                                     />
@@ -573,33 +607,25 @@ function Home() {
 </Typography>
                                     </CardContent>
                                 </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                        Share
- </Button>
-                                    <Button size="small" color="primary">
-                                        Learn More
- </Button>
-                                </CardActions>
+
                             </Card>
                         </Grid>
                     </Grid>
                 </Container>
 
             </Paper>
-
             <br />
-            <Divider variant="middle" />
 
-            <Paper elevation={3}>
+
+            <Paper elevation={2}>
                 <Container maxWidth="md">
-                    <Typography variant="h4" align="center" component="h6">
+                    <Typography variant="h5" align="center" component="h6">
                         Three Easy Steps to Having a Clean, Leak-free Home
                 </Typography>
                     <div className={EstimateStepping.root}>
                         <Stepper activeStep={activeStep} alternativeLabel>
                             {steps.map((label) => (
-                                <Step key={label}>
+                                <Step type="button" onClick={handleModalOpen} key={label}>
                                     <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
 
                                 </Step>
@@ -607,10 +633,34 @@ function Home() {
 
                         </Stepper>
                     </div>
-                    <Container maxWidth="sm" align="center">
-                        <Estimate />
+                    <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        className={classes.modal}
+                        open={open}
+                        onClose={handleModalClose}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                            timeout: 500,
+                        }}
+                    >
+                        <Fade in={open}>
+                            <div className={classes.paper}>
+                                <h2 id="transition-modal-title">Free Estimate</h2>
 
-                    </Container>
+                                <Iframe
+                                    width="1080px"
+                                    height="950rem"
+                                    display="initial"
+                                    position="relative"
+                                    src='https://forms.zohopublic.com/highviewconstruction/form/ContactForm/formperma/uDcbOwG1jziah7w4RknQcRGodfTHHL3Hl7NGGH1_SsE'
+                                >
+                                </Iframe>
+                                <Estimate />
+                            </div>
+                        </Fade>
+                    </Modal>
                 </Container>
             </Paper>
 
@@ -666,46 +716,12 @@ function Home() {
                     </List>
                     <Typography>
                     </Typography>
-                    <Image
-                        alt="Why choose High View Construction?"
-                        height="350"
-                        src={guttersBeauty}
-                        title="Why choose High View Construction?"
 
-                    />
                 </Container>
 
             </Paper>
             <Paper elevation={3}>
-                <Container maxWidth="md">
-                    <br />
-                    <Typography variant="h5" align="center">
-                        Testimonials
-                            </Typography>
-                    <div className={classes.wrapper}>
-                        <FormControlLabel
-                            control={<Switch checked={checked} onChange={handleChange} />}
-                            label="Show"
-                        />
-                        <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
-                            <Paper elevation={4} className={classes.paper}>
-
-                                <InstagramEmbed
-                                    url='https://www.instagram.com/p/CAgww00BkK-/'
-                                    maxWidth={320}
-                                    hideCaption={false}
-                                    containerTagName='div'
-                                    protocol=''
-                                    injectScript
-                                    onLoading={() => { }}
-                                    onSuccess={() => { }}
-                                    onAfterRender={() => { }}
-                                    onFailure={() => { }}
-                                />
-                            </Paper>
-                        </Slide>
-                    </div>
-                </Container>
+               <Testimonials/>
             </Paper>
 
             <br />
@@ -766,64 +782,65 @@ function Home() {
 
                 </Container>
                 <br />
-                <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center">
-                    <InstagramEmbed
-                        url='https://www.instagram.com/p/CAgww00BkK-/'
-                        maxWidth={320}
-                        hideCaption={false}
-                        containerTagName='div'
-                        protocol=''
-                        injectScript
-                        onLoading={() => { }}
-                        onSuccess={() => { }}
-                        onAfterRender={() => { }}
-                        onFailure={() => { }}
-                    />
-                    <InstagramEmbed
-                        url='https://www.instagram.com/p/B_yH2NnhBsE/'
-                        maxWidth={320}
-                        hideCaption={false}
-                        containerTagName='div'
-                        protocol=''
-                        injectScript
-                        onLoading={() => { }}
-                        onSuccess={() => { }}
-                        onAfterRender={() => { }}
-                        onFailure={() => { }}
-                    />
-                    <InstagramEmbed
-                        url='https://www.instagram.com/p/B_8Sy45hkhk/'
-                        maxWidth={320}
-                        hideCaption={false}
-                        containerTagName='div'
-                        protocol=''
-                        injectScript
-                        onLoading={() => { }}
-                        onSuccess={() => { }}
-                        onAfterRender={() => { }}
-                        onFailure={() => { }}
-                    />
-                    <InstagramEmbed
-                        url='https://www.instagram.com/p/CArHziIh9WV/'
-                        maxWidth={320}
-                        hideCaption={false}
-                        containerTagName='div'
-                        protocol=''
-                        injectScript
-                        onLoading={() => { }}
-                        onSuccess={() => { }}
-                        onAfterRender={() => { }}
-                        onFailure={() => { }}
-                    />
-                </Box>
+                <Container maxWidth="md">
+                    <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" component="span" m={1}>
+                        <InstagramEmbed
+                            url='https://www.instagram.com/p/CAgww00BkK-/'
+                            maxWidth={320}
+                            hideCaption={false}
+                            containerTagName='div'
+                            protocol=''
+                            injectScript
+                            onLoading={() => { }}
+                            onSuccess={() => { }}
+                            onAfterRender={() => { }}
+                            onFailure={() => { }}
+                        />
+                        <InstagramEmbed
+                            url='https://www.instagram.com/p/B_yH2NnhBsE/'
+                            maxWidth={320}
+                            hideCaption={false}
+                            containerTagName='div'
+                            protocol=''
+                            injectScript
+                            onLoading={() => { }}
+                            onSuccess={() => { }}
+                            onAfterRender={() => { }}
+                            onFailure={() => { }}
+                        />
+                        <InstagramEmbed
+                            url='https://www.instagram.com/p/B_8Sy45hkhk/'
+                            maxWidth={320}
+                            hideCaption={false}
+                            containerTagName='div'
+                            protocol=''
+                            injectScript
+                            onLoading={() => { }}
+                            onSuccess={() => { }}
+                            onAfterRender={() => { }}
+                            onFailure={() => { }}
+                        />
+                        <InstagramEmbed
+                            url='https://www.instagram.com/p/CArHziIh9WV/'
+                            maxWidth={320}
+                            hideCaption={false}
+                            containerTagName='div'
+                            protocol=''
+                            injectScript
+                            onLoading={() => { }}
+                            onSuccess={() => { }}
+                            onAfterRender={() => { }}
+                            onFailure={() => { }}
+                        />
+                    </Box>
+                </Container>
             </Paper>
 
             <Grid container spacing={1}>
                 <Grid item xs={12} md={6}>
-                    <Container maxWidth="md">
 
-                        <Paper elevation={2}>
-                            <Image src={coFlag} />
+                        <Paper  elevation={2}>
+                            <img classname={vendorClasses.img} src={coFlag} />
                             <Typography variant="h5" align="center" component="h7">
 
                                 Locally Owned Family Business
@@ -836,24 +853,20 @@ function Home() {
                                 We believe in providing high quality services at a reasonable price.<br /> Don't hassle with large corporations, stay local and know you will get quality service.
                             </Typography>
                         </Paper>
-                    </Container>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <Container maxWidth="md">
-                        <Paper>
-                            <Image src={coFlag} />
+                        <Paper classname={vendorClasses.img}>
+                            <img src={logo} />
 
                             <Typography variant="h5" align="center" component="h7" >
                                 Our Vendors
                          </Typography>
-                            <Box component="span" m={3}>
-                                <Image src={coFlag} />
-                                <Image src={coFlag} />
-                                <Image src={coFlag} />
+                         <br/>
+                                <img src={lfbLogo} />
+                                <img src={lansingblg} />
+                                <img src={abcLogo} />
 
-                            </Box>
                         </Paper>
-                    </Container>
                 </Grid>
 
             </Grid>
