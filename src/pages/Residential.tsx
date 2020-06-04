@@ -17,6 +17,9 @@ const centerContent = makeStyles({
   root: {
       marginTop: '0',
       backgroundColor: '#398',
+      display:'box',
+      position:'relative',
+      
   },
   Container: {
 

@@ -33,7 +33,7 @@ import AngiesList from '../images/angieslistBtn.png'
 
 import { Link } from "gatsby"
 
-import logo from "../images/hv.png"
+import logo from "../images/HighviewShrunk.png"
 
 import Estimate from "../pages/Estimate"
 const scrollToTopStyles = makeStyles((theme) => ({

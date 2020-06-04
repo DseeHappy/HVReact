@@ -45,7 +45,7 @@ import coFlag from '../images/colorado-flag.png'
 import guttersBeauty from "../images/gutters_beauty.jpg"
 import guttersDamage from "../images/storm-dmg-house.gif"
 import gutterGuard from "../images/leafblaster.jpg"
-import logo from "../images/hvlogo.png"
+import logo from "../images/HighviewLogo.png"
 import lfbLogo from "../images/LFB_balckgreen@3x-1.png"
 import lansingblg from "../images/lansing-building-products.png"
 import abcLogo from "../images/abc_logo_insite.png"
