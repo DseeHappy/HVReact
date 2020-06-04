@@ -10,6 +10,8 @@ import {
     IconButton, CssBaseline, Button, Stepper, Step, StepLabel, Grid, ButtonBase, CardActionArea,
     CardMedia, CardHeader, Box, FormControlLabel, Switch, Slide, Modal, Backdrop, Fade
 } from "@material-ui/core"
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { flexbox } from '@material-ui/system';
@@ -30,8 +32,11 @@ import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
-import Paper from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import BeenhereIcon from '@material-ui/icons/Beenhere';
+import BuildIcon from '@material-ui/icons/Build';
+import HelpIcon from '@material-ui/icons/Help';
+
 
 import Iframe from 'react-iframe'
 
@@ -56,11 +61,17 @@ import InstagramEmbed from 'react-instagram-embed'
 
 
 const drawerWidth = 240;
-const ctaImageStyles = makeStyles({
+const ctaImageStyles = makeStyles((theme) => ({
     root: {
-        height: '1920px'
+        
+    },
+    img: {
+        width: '15rem',
+[theme.breakpoints.down('sm')]:{
+    height:'20rem'
+}
     }
-})
+}))
 const slideStyles = makeStyles((theme) => ({
     root: {
         height: 180,
@@ -85,9 +96,9 @@ const slideStyles = makeStyles((theme) => ({
 }));
 const centerContent = makeStyles({
     root: {
-        marginTop: '-1.3rem',
+        marginTop: '0',
         backgroundColor: '#398',
-
+        zIndex:''
     },
     Container: {
 
@@ -530,8 +541,10 @@ function Home() {
         <div>
             <CssBaseline />
 
-            <ReactCompareImage className={classes.root} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />;
+            <Container maxWidth="xl" className={classes.root} >
+                <ReactCompareImage className={classes.img} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />
 
+</Container>
             <Paper className={centerClasses.root} elevation={2}>
                 <Container maxWidth="md">
                     <Typography variant="h4" align="center" component="h1">
@@ -709,9 +722,8 @@ function Home() {
                     <br />
                     <Container>
                         <Typography gutterBottom variant="h4" align="center" component="h7">
-                            <LoyaltyIcon fontSize="large" />
 
-              Why Choose High View Construction?
+                            Why Choose High View Construction?
           </Typography>
                         <Divider variant="middle" />
                         <Typography variant="h6" align="center" component="p1">
@@ -724,7 +736,7 @@ function Home() {
                     </Container>
                     <br />
                     <Typography gutterBottom variant="h5" align="center">
-                        Here are a few things you can expect when you work with us
+                        Here are a few things you can expect when you work with us:
                  </Typography>
 
                     <Divider variant="middle" />
@@ -732,6 +744,7 @@ function Home() {
                     <List >
                         <ListItem>
                             <ListItemText inset align="center">
+                                <QuestionAnswerIcon /><br />
                                 A full explanation of our recommended solutions
                             </ListItemText>
                         </ListItem>
@@ -739,13 +752,15 @@ function Home() {
 
                         <ListItem>
                             <ListItemText inset align="center">
+                                <BuildIcon /><br />
                                 The best technicians in the business
                             </ListItemText>
                         </ListItem>
                         <Divider variant="middle" />
                         <ListItem>
                             <ListItemText inset align="center">
-                                A full clean up and follow up after every job
+                                <BeenhereIcon /> <br />
+                            A full clean up and follow up after every job
 
                             </ListItemText>
                         </ListItem>
@@ -813,7 +828,7 @@ function Home() {
                     <Typography gutterBottom align="center">
                         From the angle of the gutters to the pitch of the roof, your home may be hiding major water damage if your gutters are in poor shape.
                         <br />
-                        <Button>More Photos</Button>
+                        <Button href="https://www.instagram.com/highviewgutterservices/">More Photos</Button>
                     </Typography>
 
                 </Container>

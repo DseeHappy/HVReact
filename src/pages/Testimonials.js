@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
     wrapper: {
         padding: '1.2rem',
         margin: '0rem',
-        padding:'0rem',
+        padding: '0rem',
         maxWidth: 'auto',
         display: 'flex',
         [theme.breakpoints.down('md')]: {
             flexDirection: 'column',
-        
+
         },
     },
     paper: {
@@ -33,14 +33,15 @@ const useStyles = makeStyles((theme) => ({
         margin: '20px 0',
         display: 'block',
         padding: 'auto',
-        minHeight:'25rem',
-        [theme.breakpoints.down('md')]:{
-            minWidth:'30rem'
+        minHeight: '23rem',
+        [theme.breakpoints.down('md')]: {
+            minWidth: '30rem'
 
         },
-        [theme.breakpoints.up('lg')]:{
-                    minWidth:'20rem',
-                    margin:'.5rem'
+        [theme.breakpoints.up('lg')]: {
+            minWidth: '20rem',
+            margin: '.5rem',
+            maxWidth: '25rem'
         }
     },
     svg: {
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: '600',
         lineHeight: '50px',
         verticalAlign: 'baseline',
-        minWidth:'10px',
+        minWidth: '10px',
 
 
     },
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
         position: 'relative',
         textAlign: 'right',
-        minHeight:'14rem'
+        minHeight: '14rem'
 
     },
     testimonialsContainer: {
@@ -108,12 +109,12 @@ const useStyles = makeStyles((theme) => ({
     },
     testimonialBottomBtn: {
         display: 'inline',
-        padding:'0rem',
-        margin:'0rem',
-        position:'relative',
-        float:'right',
-        right:'10px',
-        bottom:'2px'
+        padding: '0rem',
+        margin: '0rem',
+        position: 'relative',
+        float: 'right',
+        right: '10px',
+        bottom: '2px'
 
     }
 
@@ -152,15 +153,15 @@ export default function Testimonials() {
                                 I have worked for them for 4 years whenever I need gutters and they
                                 always do a fantastic job. I highly recommend them.
                             </Typography>
-                            <br/>
+                            <br />
                             <Divider variant='middle' />
-                            <br/>
-                                <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
+                            <br />
+                            <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
 
                         </Paper>
 
                     </Slide>
-                
+
                     <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
                         <Paper elevation={2} className={classes.paper}>
                             <br />
@@ -175,15 +176,15 @@ export default function Testimonials() {
                                 Great. Work was performed quickly and professionally.
 
                             </Typography>
-                            <br/>
+                            <br />
                             <Divider variant='middle' />
-                            <br/>
-                                <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
+                            <br />
+                            <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
 
                         </Paper>
 
                     </Slide>
-            
+
                     <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
                         <Paper elevation={2} className={classes.paper}>
                             <br />
@@ -198,10 +199,10 @@ export default function Testimonials() {
                                 the job. Everything seems to work out and were
                                 happy with what they did.
                             </Typography>
-                            <br/>
+                            <br />
                             <Divider variant='middle' />
-                            <br/>
-                                <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
+                            <br />
+                            <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
 
                         </Paper>
 
