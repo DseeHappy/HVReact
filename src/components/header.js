@@ -9,7 +9,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import { Typography, Button, Box, Container, useScrollTrigger, SwipeableDrawer, useMediaQuery, ClickAwayListener, Slide, Zoom,Fab } from '@material-ui/core';
+import {
+  Typography, Button, Box, Container, useScrollTrigger,
+  SwipeableDrawer, useMediaQuery, ClickAwayListener, Slide,
+  Zoom, Fab
+} from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -31,9 +35,12 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import AngiesList from '../images/angieslistBtn.png'
 
+
+import '../components/layout.css'
+
 import { Link } from "gatsby"
 
-import logo from "../images/HighviewShrunk.png"
+import logo from "../images/HighviewTR.png"
 
 import Estimate from "../pages/Estimate"
 const scrollToTopStyles = makeStyles((theme) => ({
@@ -123,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   logo: {
-    
+
     overflow: 'visible',
     marginBottom: '0px',
     [theme.breakpoints.down('sm')]: {
@@ -223,7 +230,7 @@ const useStyles = makeStyles((theme) => ({
       width: '12rem',
       margin: 'auto',
       padding: 'auto',
-      fontSize:'20px'
+      fontSize: '20px'
     },
     [theme.breakpoints.up('lg')]: {
       marginLeft: '1.4rem'
@@ -288,16 +295,16 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
     textDecoration: 'none',
     verticalAlign: 'middle',
-    padding:'0rem',
-    margin:'0rem'
+    padding: '0rem',
+    margin: '0rem'
   },
-  btnImage:{
-    maxHeight:'35px',
-    padding:'0px',
+  btnImage: {
+    maxHeight: '35px',
+    padding: '0px',
     alignItems: 'center',
-    margin:'0px'
+    margin: '0px'
   }
-  
+
 
 
 }));
@@ -393,7 +400,7 @@ export default function Header(props) {
 
         <AppBar>
           <Toolbar id="back-to-top-anchor" variant="dense" className={classes.topToolbar}>
-            <Button href="tel:720-325-9473" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <Button href="tel:720-325-9473" noWrap variant="text"  className={classes.topToolbarBtns}>
               <PhoneIcon />
       720-325-9473
 </Button>
@@ -403,7 +410,7 @@ export default function Header(props) {
            GilbertoSanchez@highview5280.com
 </Button>
 
-            <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <Button href="https://login.highview5280.com/portal/highviewconstruction" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
               <FacebookIcon />
 
             </Button>
@@ -411,8 +418,8 @@ export default function Header(props) {
               <InstagramIcon />
 
             </Button>
-             <Button href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"  noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
-             <img className={classes.btnImage} src={AngiesList}/>
+            <Button href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+              <img className={classes.btnImage} src={AngiesList} />
             </Button>
 
 
@@ -500,10 +507,10 @@ export default function Header(props) {
         </AppBar>
       </HideOnScroll>
       <ScrollTop {...props}>
-      <Fab color="secondary" size="small" aria-label="scroll back to top">
-        <KeyboardArrowUpIcon />
-      </Fab>
-    </ScrollTop>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
       <SwipeableDrawer
         className={classes.drawer}
         variant="persistent"

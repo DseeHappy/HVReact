@@ -15,13 +15,21 @@ import angiesListReview from '../images/ReviewusAngiesList.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        backgroundColor: '#142a4f',
+        zIndex: '1'
     },
     wrapper: {
         padding: '1.2rem',
-        margin: '0rem',
-        padding: '0rem',
+        margin: 'auto',
+        padding: 'auto',
         maxWidth: 'auto',
         display: 'flex',
+        backgroundColor: '#142a4f',
+        zIndex: '1',
+        [theme.breakpoints.down('sm')]: {
+            alignItems: 'center',
+
+        },
         [theme.breakpoints.down('md')]: {
             flexDirection: 'column',
 
@@ -33,15 +41,21 @@ const useStyles = makeStyles((theme) => ({
         margin: '20px 0',
         display: 'block',
         padding: 'auto',
-        minHeight: '23rem',
-        [theme.breakpoints.down('md')]: {
-            minWidth: '30rem'
+        zIndex: '1',
 
+        [theme.breakpoints.down('sm')]: {
+            
+
+        },
+        [theme.breakpoints.down('md')]: {
+            minWidth: '30rem',
+            minHeight: '23rem',
         },
         [theme.breakpoints.up('lg')]: {
             minWidth: '20rem',
             margin: '.5rem',
-            maxWidth: '25rem'
+            maxWidth: '25rem',
+            minHeight: '23rem',
         }
     },
     svg: {
@@ -56,9 +70,27 @@ const useStyles = makeStyles((theme) => ({
 
     },
     imgBtn: {
-        alignSelf: 'center',
-        minWidth: '150px'
+        minWidth: '150px',
+        backgroundColor: '#ffff',
+        [theme.breakpoints.down('sm')]: {
+            margin: '1.2rem',
 
+
+        },
+        [theme.breakpoints.up('md')]: {
+
+            margin: '2rem',
+
+
+
+        },
+        [theme.breakpoints.up('lg')]: {
+
+            margin: '1rem',
+
+
+
+        },
 
     },
     roundBtn: {
@@ -88,11 +120,30 @@ const useStyles = makeStyles((theme) => ({
 
     },
     testimonialsContainer: {
-        display: 'flex',
-        padding: '2rem',
-        margin: '2rem',
-        [theme.breakpoints.down('md')]: {
-            flexDirection: 'column',
+        backgroundColor: '#142a4f',
+        [theme.breakpoints.down('sm')]: {
+            display: 'inline',
+            margin:'10rem'
+
+        },
+        [theme.breakpoints.up('md')]: {
+            display: 'flex',
+
+            flexDirection: 'row',
+            padding: '2rem',
+            margin: '2rem',
+
+
+
+        },
+        [theme.breakpoints.up('lg')]: {
+
+            flexDirection: 'row',
+            padding: '2rem',
+            margin: '2rem',
+
+
+
         },
 
 

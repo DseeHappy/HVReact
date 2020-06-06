@@ -45,7 +45,8 @@ import coFlag from '../images/colorado-flag.png'
 import guttersBeauty from "../images/gutters_beauty.jpg"
 import guttersDamage from "../images/storm-dmg-house.gif"
 import gutterGuard from "../images/leafblaster.jpg"
-import logo from "../images/HighviewLogo.png"
+import logo from "../images/HighviewTR.png"
+import logoBar from "../images/HighViewBar.png"
 import lfbLogo from "../images/LFB_balckgreen@3x-1.png"
 import lansingblg from "../images/lansing-building-products.png"
 import abcLogo from "../images/abc_logo_insite.png"
@@ -63,13 +64,13 @@ import InstagramEmbed from 'react-instagram-embed'
 const drawerWidth = 240;
 const ctaImageStyles = makeStyles((theme) => ({
     root: {
-        
+
     },
     img: {
         width: '15rem',
-[theme.breakpoints.down('sm')]:{
-    height:'20rem'
-}
+        [theme.breakpoints.down('sm')]: {
+            height: '20rem'
+        }
     }
 }))
 const slideStyles = makeStyles((theme) => ({
@@ -94,17 +95,18 @@ const slideStyles = makeStyles((theme) => ({
         strokeWidth: 1,
     },
 }));
-const centerContent = makeStyles({
+const centerContent = makeStyles((theme) => ({
     root: {
         marginTop: '0',
-        backgroundColor: '#398',
-        zIndex:''
+        backgroundColor: '#142a4f',
+        color: 'white',
+
     },
     Container: {
 
     },
 
-});
+}));
 const mainCards = makeStyles(({ breakpoints, spacing }) => ({
     root: {
         margin: 'auto',
@@ -133,7 +135,7 @@ const mainCards = makeStyles(({ breakpoints, spacing }) => ({
         height: 0,
         paddingBottom: '48%',
         borderRadius: spacing(2),
-        backgroundColor: '#fff',
+        backgroundColor: '#142a4f',
         position: 'relative',
         [breakpoints.up('md')]: {
             width: '100%',
@@ -148,7 +150,7 @@ const mainCards = makeStyles(({ breakpoints, spacing }) => ({
             left: 0,
             width: '100%',
             height: '100%',
-            backgroundImage: 'linear-gradient(147deg, #fe8a39 0%, #fd3838 74%)',
+            backgroundImage: '#142a4f',
             borderRadius: spacing(2), // 16
             opacity: 0.5,
         },
@@ -164,6 +166,8 @@ const mainCards = makeStyles(({ breakpoints, spacing }) => ({
 const estimateStepper = makeStyles((theme) => ({
     root: {
         width: '100%',
+        backgroundColor: '#f58d02',
+        borderRadius: '20px'
     },
     button: {
         marginRight: theme.spacing(1),
@@ -180,11 +184,17 @@ const estimateStepper = makeStyles((theme) => ({
     },
     estimateBtn: {
         width: '100%'
+    },
+    paper: {
+        backgroundColor: '#f58d02'
     }
 }));
 const cardstyles = makeStyles((theme) => (
     {
         root: {
+        },
+        paper: {
+            backgroundColor: '#142A4F'
         },
         bullet: {
             display: 'inline-block',
@@ -377,13 +387,15 @@ const useColorlibStepIconStyles = makeStyles({
     },
     active: {
         backgroundImage:
-            'linear-gradient( 136deg, rgb(233,64,87)  0%, rgb(233,64,87) 100%)',
+            'linear-gradient( 136deg, rgb(20, 42, 79)  0%, rgb(20, 42, 79) 100%)',
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+        color: '#F58D02',
+        fontWeight: '700',
 
     },
     completed: {
         backgroundImage:
-            'linear-gradient( 136deg, rgb(233,64,87)  0%, rgb(233,64,87) 50%, rgb(233,64,87)  100%)',
+            'linear-gradient( 136deg, rgb(20, 42, 79)  0%, rgb(20, 42, 79) 50%, rgb(20, 42, 79)  100%)',
     },
 });
 
@@ -408,7 +420,45 @@ function ColorlibStepIcon(props) {
         </div>
     );
 };
+const previousWorkStyles = makeStyles((theme) => ({
+    paper: {
+        backgroundColor: '#142a4f'
+    },
+    container: {
+        backgroundColor: '#f58d02',
+        color: '#fff'
+    },
+    photosBtn: {
+        color: '#fff'
+    },
+    instagramContainer: {
+        display: 'flex',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            margin: 'auto',
+            padding: 'auto',
+            alignItems: 'center'
 
+        },
+        [theme.breakpoints.up('md')]: {
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+
+        },
+        [theme.breakpoints.up('lg')]: {
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            maxWidth: '1920px'
+
+        }
+
+    },
+    instagramEmbed: {
+        padding: '2rem',
+        margin: '.2rem',
+        alignSelf: 'center'
+    }
+}))
 const modalStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
@@ -428,30 +478,88 @@ const vendorStyles = makeStyles((theme) => ({
     root: {
         display: 'block'
     },
+
+
+    wrapper: {
+        padding: '1.2rem',
+        margin: '0rem',
+        padding: '0rem',
+        maxWidth: 'auto',
+        display: 'flex',
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'column',
+
+        },
+    },
+    paper: {
+        zIndex: 1,
+        borderRadius: '10px',
+        margin: '20px 0',
+        display: 'block',
+        padding: 'auto',
+        minHeight: '23rem',
+        [theme.breakpoints.down('md')]: {
+            minWidth: '30rem'
+
+        },
+        [theme.breakpoints.up('lg')]: {
+            minWidth: '20rem',
+            margin: '.5rem',
+            maxWidth: '25rem'
+        }
+    },
+    svg: {
+        width: '100',
+        height: '100',
+    },
+
     img: {
-        padding: "auto",
+        height: '4rem',
         margin: 'auto',
-        objectFit: 'contain',
+        padding: 'auto',
+
+    },
+    imgBtn: {
+        alignSelf: 'center',
+        minWidth: '150px'
+
+
     },
     imgContainer: {
         display: 'inline-block',
-
+        borderRadius: '20px',
+        maxWidth: '60rem'
 
     },
     localContainer: {
-        display: 'box'
+        display: 'box',
+        backgroundColor: '#142a4f',
+        color:'#ffff'
     },
     vendorContainer: {
-        display: 'box',
-        margin: 'auto',
-        padding: 'auto',
-        objectFit: 'contain',
+        display: 'flex',
+        padding: '2rem',
+        margin: '2rem',
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'column',
+        },
 
+        backgroundColor: '#f58d02',
+        borderColor: '#142a4f'
 
+    },
+    divider:{
+        backgroundColor:'#f58d02'
+    },
+    textContainer: {
+        padding: '2rem',
+        margin: '.5rem'
     },
     brandsContainer: {
         display: 'flex',
         maxWidth: '25rem',
+
+        margin: '1rem',
 
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
@@ -462,14 +570,99 @@ const vendorStyles = makeStyles((theme) => ({
         }
     },
     vendorWrapper: {
-        padding: '2.5rem'
+        padding: '1.2rem',
+        margin: '0rem',
+        padding: '0rem',
+        maxWidth: 'auto',
+        display: 'flex',
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'column',
+
+        },
     },
     titleContainer: {
         display: 'block',
-        textAlign: 'center'
+        textAlign: 'center',
+
+    },
+    brandContainer: {
+        display: 'block',
+        textAlign: 'center',
+        backgroundColor: '#142a4f',
+        padding:'2rem',
+        margin:'0rem'
     },
 
 }));
+
+const whyhighviewstyles = makeStyles((theme) => ({
+    paper: {
+        backgroundColor: '#142A4F',
+    },
+    headerContainer: {
+        backgroundColor: '#42527b',
+        color: '#ffffff',
+        transform: 'skew(20deg)',
+        '& h1': {
+            transform: 'skew(-20deg)', /* UNSKEW */
+            fontSize: '1.5rem',
+            padding: '.5rem'
+        },
+        '& h2': {
+            transform: 'skew(-20deg)', /* UNSKEW */
+            fontSize: '1.2rem',
+            padding: '.5rem'
+        },
+        '& h3': {
+            transform: 'skew(-20deg)', /* UNSKEW */
+            fontSize: '1rem',
+            padding: '.5rem'
+        }
+
+
+    },
+    listTitle: {
+        color: '#ffffff'
+    },
+    listContainer: {
+        backgroundColor: '#f58d02',
+        color: '#142a4f',
+        padding: '0px',
+        margin: '0px',
+
+
+        [theme.breakpoints.down('sm')]: {
+            borderLeft: '2rem solid ',
+            borderRight: '2rem solid ',
+            height: '2rem',
+            width: '100%',
+            borderBottom: '20rem solid transparent',
+
+        },
+        [theme.breakpoints.up('md')]: {
+            borderLeft: '6rem solid ',
+            borderRight: '6rem solid ',
+            height: '6rem',
+            width: '100%',
+            borderBottom: '18rem solid transparent',
+        },
+
+        [theme.breakpoints.up('lg')]: {
+            borderLeft: '9rem solid ',
+            borderRight: '9rem solid ',
+            height: '9rem',
+            width: '100%',
+            borderBottom: '18rem solid transparent',
+        }
+    },
+    trapezoid: {
+        borderBottom: '20rem solid transparent',
+        borderLeft: '5rem solid transparent',
+        borderRight: '5rem solid transparent',
+        height: '0',
+        width: '1000px',
+    }
+}))
 
 const images = [
     {
@@ -498,6 +691,8 @@ function Home() {
     const centerClasses = centerContent();
     const modalClasses = modalStyles();
     const vendorClasses = vendorStyles();
+    const previousWork = previousWorkStyles();
+    const whyhighviewClasses = whyhighviewstyles();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -544,7 +739,7 @@ function Home() {
             <Container maxWidth="xl" className={classes.root} >
                 <ReactCompareImage className={classes.img} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />
 
-</Container>
+            </Container>
             <Paper className={centerClasses.root} elevation={2}>
                 <Container maxWidth="md">
                     <Typography variant="h4" align="center" component="h1">
@@ -552,7 +747,7 @@ function Home() {
 
                               </Typography>
                     <Divider variant="middle" />
-                    <Typography color="primary" variant="body2" align="center" component="h2">
+                    <Typography color="secondary" variant="body2" align="center" component="h2">
                         Everything installed by us is ready to stand the weather here in Colorado
 
                               </Typography>
@@ -561,12 +756,8 @@ function Home() {
             </Paper>
 
 
-            <br />
-            <Divider gutterBottom variant="middle" />
-            <br />
 
-
-            <Paper>
+            <Paper className={card.paper}>
                 <Container maxWidth="lg">
                     <Grid container alignItems="center" spacing={3}>
                         <Grid item container alignItems="center" xs={12} md={4}>
@@ -580,7 +771,7 @@ function Home() {
                                         title="Beautiful gutter installation"
                                     />
                                     <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
+                                        <Typography gutterBottom variant="h5" align="center" component="h2">
                                             Seamless Gutters
 
            </Typography>
@@ -593,7 +784,7 @@ function Home() {
            </Typography>
                                         <Divider variant="middle" />
 
-                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        <Typography variant="body2" color="secondary" component="p">
                                             With all our gutter installation, we offer color matching from a wide selection of manufacturers.
            </Typography>
                                     </CardContent>
@@ -651,7 +842,7 @@ function Home() {
 
    </Typography>
                                         <Divider variant="middle" />
-                                        <Typography gutterBottom variant="body2" color="textSecondary" align="center" component="p3">
+                                        <Typography gutterBottom variant="body2" color="secondary" align="center" component="p3">
                                             From major repairs to minor maintenance we can make your home feel as good as new
 </Typography>
                                     </CardContent>
@@ -663,16 +854,15 @@ function Home() {
                 </Container>
 
             </Paper>
-            <br />
 
 
-            <Paper elevation={2}>
+            <Paper className={EstimateStepping.paper} elevation={2}>
                 <Container maxWidth="md">
-                    <Typography variant="h5" align="center" component="h6">
+                    <Typography variant="subtitle1" fontStyle="normal" align="center" color="primary" component="h6">
                         Three Easy Steps to Having a Clean, Leak-free Home
                 </Typography>
-                    <div className={EstimateStepping.root}>
-                        <Stepper activeStep={activeStep} alternativeLabel>
+                    <div >
+                        <Stepper className={EstimateStepping.root} activeStep={activeStep} alternativeLabel>
                             {steps.map((label) => (
                                 <Step type="button" onClick={handleModalOpen} key={label}>
                                     <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
@@ -685,7 +875,7 @@ function Home() {
                     <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
-                        className={classes.modal}
+                        className={modalClasses.modal}
                         open={open}
                         onClose={handleModalClose}
                         closeAfterTransition
@@ -695,7 +885,7 @@ function Home() {
                         }}
                     >
                         <Fade in={open}>
-                            <div className={classes.paper}>
+                            <div className={modalClasses.paper}>
                                 <h2 id="transition-modal-title">Free Estimate</h2>
 
                                 <Iframe
@@ -714,68 +904,68 @@ function Home() {
             </Paper>
 
 
-            <br />
 
 
-            <Paper elevation={2}>
+            <Paper className={whyhighviewClasses.paper} elevation={2}>
                 <Container maxWidth="md">
                     <br />
-                    <Container>
-                        <Typography gutterBottom variant="h4" align="center" component="h7">
+                    <Paper className={whyhighviewClasses.headerContainer}>
+                        <Container >
+                            <h1 gutterBottom variant="h4" align="center" component="h7">
 
-                            Why Choose High View Construction?
-          </Typography>
-                        <Divider variant="middle" />
-                        <Typography variant="h6" align="center" component="p1">
-                            No matter the weather, High View is here ready for any and all your repair needs.
-          </Typography>
-                        <br />
-                        <Typography variant="body2" align="center" component="p2">
-                            We want to make sure you’re 100% satisfied, and we go the extra mile to make your experience as enjoyable and stress-free as possible.
-          </Typography>
-                    </Container>
+                                Why Choose High View Construction?
+    </h1>
+                            <Divider variant="middle" />
+                            <h2 variant="h6" align="center" component="p1">
+                                No matter the weather, High View is here ready for any and all your repair needs.
+    </h2>
+                            <h3 variant="body2" align="center" component="p2">
+                                We want to make sure you’re 100% satisfied, and we go the extra mile to make your experience as enjoyable and stress-free as possible.
+    </h3>
+                        </Container>
+                    </Paper>
                     <br />
-                    <Typography gutterBottom variant="h5" align="center">
-                        Here are a few things you can expect when you work with us:
-                 </Typography>
+                    <Container className={whyhighviewClasses.listTitle} >
+                        <Typography gutterBottom variant="h5" align="center">
+                            Here are a few things you can expect when you work with us:
+            </Typography>
+                    </Container>
 
                     <Divider variant="middle" />
 
-                    <List >
-                        <ListItem>
-                            <ListItemText inset align="center">
-                                <QuestionAnswerIcon /><br />
-                                A full explanation of our recommended solutions
-                            </ListItemText>
-                        </ListItem>
-                        <Divider variant="middle" />
+                    <Container className={whyhighviewClasses.listContainer}>
+                        <List >
+                            <ListItem>
+                                <ListItemText inset align="center">
+                                    <QuestionAnswerIcon /><br />
+                         A full explanation of our recommended solutions
+                     </ListItemText>
+                            </ListItem>
+                            <Divider variant="middle" />
 
-                        <ListItem>
-                            <ListItemText inset align="center">
-                                <BuildIcon /><br />
-                                The best technicians in the business
-                            </ListItemText>
-                        </ListItem>
-                        <Divider variant="middle" />
-                        <ListItem>
-                            <ListItemText inset align="center">
-                                <BeenhereIcon /> <br />
-                            A full clean up and follow up after every job
+                            <ListItem>
+                                <ListItemText inset align="center">
+                                    <BuildIcon /><br />
+                         The best technicians in the business
+                     </ListItemText>
+                            </ListItem>
+                            <Divider variant="middle" />
+                            <ListItem>
+                                <ListItemText inset align="center">
+                                    <BeenhereIcon /> <br />
+                     A full clean up and follow up after every job
 
-                            </ListItemText>
-                        </ListItem>
-                    </List>
-                    <Typography>
-                    </Typography>
+                     </ListItemText>
+                            </ListItem>
+                        </List>
+
+                    </Container>
 
                 </Container>
 
             </Paper>
-            <Paper elevation={3}>
-                <Testimonials />
-            </Paper>
+            <Testimonials />
 
-            <br />
 
             <div className={threeImage.root}>
                 {images.map((image) => (
@@ -809,12 +999,10 @@ function Home() {
                     </ButtonBase>
                 ))}
             </div>
-            <br />
-            <Divider variant="middle" />
-            <br />
 
-            <Paper>
-                <Container maxWidth="md">
+
+            <Paper className={previousWork.paper}>
+                <Container className={previousWork.container} maxWidth="md">
                     <br />
                     <Typography gutterBottom variant="h4" align="center">
                         <PhotoCameraIcon fontSize="large" />
@@ -828,62 +1016,60 @@ function Home() {
                     <Typography gutterBottom align="center">
                         From the angle of the gutters to the pitch of the roof, your home may be hiding major water damage if your gutters are in poor shape.
                         <br />
-                        <Button href="https://www.instagram.com/highviewgutterservices/">More Photos</Button>
+                        <Button className={previousWork.photosBtn} href="https://www.instagram.com/highviewgutterservices/">More Photos</Button>
                     </Typography>
 
                 </Container>
                 <br />
-                <Container maxWidth="md">
-                    <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" component="span" m={1}>
-                        <InstagramEmbed
-                            url='https://www.instagram.com/p/CAgww00BkK-/'
-                            maxWidth={320}
-                            hideCaption={false}
-                            containerTagName='div'
-                            protocol=''
-                            injectScript
-                            onLoading={() => { }}
-                            onSuccess={() => { }}
-                            onAfterRender={() => { }}
-                            onFailure={() => { }}
-                        />
-                        <InstagramEmbed
-                            url='https://www.instagram.com/p/B_yH2NnhBsE/'
-                            maxWidth={320}
-                            hideCaption={false}
-                            containerTagName='div'
-                            protocol=''
-                            injectScript
-                            onLoading={() => { }}
-                            onSuccess={() => { }}
-                            onAfterRender={() => { }}
-                            onFailure={() => { }}
-                        />
-                        <InstagramEmbed
-                            url='https://www.instagram.com/p/B_8Sy45hkhk/'
-                            maxWidth={320}
-                            hideCaption={false}
-                            containerTagName='div'
-                            protocol=''
-                            injectScript
-                            onLoading={() => { }}
-                            onSuccess={() => { }}
-                            onAfterRender={() => { }}
-                            onFailure={() => { }}
-                        />
-                        <InstagramEmbed
-                            url='https://www.instagram.com/p/CArHziIh9WV/'
-                            maxWidth={320}
-                            hideCaption={false}
-                            containerTagName='div'
-                            protocol=''
-                            injectScript
-                            onLoading={() => { }}
-                            onSuccess={() => { }}
-                            onAfterRender={() => { }}
-                            onFailure={() => { }}
-                        />
-                    </Box>
+                <Container className={previousWork.instagramContainer} maxWidth="md">
+                    <InstagramEmbed className={previousWork.instagramEmbed}
+                        url='https://www.instagram.com/p/CAgww00BkK-/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                    <InstagramEmbed className={previousWork.instagramEmbed}
+                        url='https://www.instagram.com/p/B_yH2NnhBsE/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                    <InstagramEmbed className={previousWork.instagramEmbed}
+                        url='https://www.instagram.com/p/B_8Sy45hkhk/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
+                    <InstagramEmbed className={previousWork.instagramEmbed}
+                        url='https://www.instagram.com/p/CArHziIh9WV/'
+                        maxWidth={320}
+                        hideCaption={false}
+                        containerTagName='div'
+                        protocol=''
+                        injectScript
+                        onLoading={() => { }}
+                        onSuccess={() => { }}
+                        onAfterRender={() => { }}
+                        onFailure={() => { }}
+                    />
                 </Container>
             </Paper>
 
@@ -899,18 +1085,21 @@ function Home() {
                             <Typography variant="h5" align="center" component="h7">
 
                                 Locally Owned Family Business
+                                <img classname={vendorClasses.img} src={logoBar} />
 
-                         </Typography>
+                            </Typography>
                         </Container>
-                        <Typography align="center">
-                            We are High View Construction and we've been installing gutters here in Colorado since 2018. <br />The Owner Gilberto Sanchez has over 10 years of professional experience working with different local businesses.
+                        <Container className={vendorClasses.textContainer}>
+                            <Typography align="center">
+                                We are High View Construction and we've been installing gutters here in Colorado since 2018. <br />The Owner Gilberto Sanchez has over 10 years of professional experience working with different local businesses.
                            </Typography>
-                        <br />
-                        <Divider variant="middle" />
-                        <br />
-                        <Typography align="center">
-                            <b>We believe in providing high quality services at a reasonable price.</b><br /> <em>Don't hassle with large corporations, stay local and know you will get quality service.</em>
-                        </Typography>
+                            <br />
+                            <Divider className={vendorClasses.divider} variant="middle" />
+                            <br />
+                            <Typography align="center">
+                                <b>We believe in providing high quality services at a reasonable price.</b><br /> <em>Don't hassle with large corporations, stay local and know you will get quality service.</em>
+                            </Typography>
+                        </Container>
                     </Container>
                 </Container>
             </Paper>
@@ -920,8 +1109,10 @@ function Home() {
                 <Container className={vendorClasses.vendorWrapper}>
 
 
-                    <Container className={vendorClasses.titleContainer}>
-                        <Typography variant="h5" align="center" component="h7" >
+                    <Container className={vendorClasses.brandContainer}>
+
+                        <Typography className={vendorClasses.imgContainer} color='secondary' variant="h3" align="center" component="h7" >
+                            <img classname={vendorClasses.img} src={logo} />
                             <em>
                                 Our Vendors
                             </em>

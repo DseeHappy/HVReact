@@ -19,11 +19,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `highviewconstruction`,
+        short_name: `highview`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#142A4F`,
+        theme_color: `#142A4F`,
         display: `minimal-ui`,
         icon: `src/images/HighviewIcon.png`, // This path is relative to the root of the site.
       },

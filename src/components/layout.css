@@ -6,6 +6,9 @@ html {
   font-style: normal;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+
+  --primaryColor: #142A4F;
+  --accentColor: #F58D02;
 }
 body {
   margin: 0;
