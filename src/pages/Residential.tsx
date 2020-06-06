@@ -13,27 +13,36 @@ import lfblastershield from '../images/DoneRight_Partnerpng.png'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-const centerContent = makeStyles({
+const centerContent = makeStyles((theme) => ({
   root: {
-      marginTop: '0',
-      backgroundColor: '#398',
-      display:'box',
-      position:'relative',
-      
+    marginTop: '0',
+    backgroundColor: '#398',
+    display: 'box',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '8rem'
+    }
   },
   Container: {
 
   },
-
-});
+  centerImg: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+      paddingTop: '4rem'
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'inline',
+    }
+  }
+}));
 function Residential(props: PageProps) {
-  const centerClasses =centerContent();
+  const centerClasses = centerContent();
 
   return (
     <Layout>
       <SEO title="Residential Services" />
-      <Container maxWidth="xl" className={centerContent.root}>
-        <img src={mainImage} />
+      <Container maxWidth="xl" className={centerClasses.root}>
+        <img className={centerClasses.centerImg} src={mainImage} />
         <Container  >
           <Typography>
             <img src={lfblastershield} />

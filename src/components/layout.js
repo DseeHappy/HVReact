@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import {
   Button, Grid, CssBaseline, Typography, Container, Paper,
@@ -51,6 +52,10 @@ const footerStyles = makeStyles((theme) => ({
     color: '#ffffff'
 
   },
+  divider: {
+    backgroundColor: '#F58D02',
+
+  },
   boxOuter: {
 
   },
@@ -72,41 +77,6 @@ const buttonStyles = makeStyles((theme) => ({
   },
 }));
 
-const backtoTopStyles = makeStyles((theme) => ({
-  root: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-}));
-
-function ScrollTop(props) {
-  const { children, window } = props;
-  const classes = backtoTopStyles();
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-  return (
-    <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
-        {children}
-      </div>
-    </Zoom>
-  );
-}
 
 function Layout({ children, props }) {
   const data = useStaticQuery(graphql`
@@ -121,13 +91,16 @@ function Layout({ children, props }) {
   const classes = buttonStyles();
   const footerClasses = footerStyles();
   return (
-    <>
+    <div className={footerClasses.root}>
+      <Helmet>
+
+      </Helmet>
       <ThemeProvider theme={theme}>
 
         <Header siteTitle={data.site.siteMetadata.title} />
 
         <main>{children}</main>
-        <div className={footerClasses.root}
+        <div
           style={{
             margin: `0 auto`,
             maxWidth: 960,
@@ -135,12 +108,7 @@ function Layout({ children, props }) {
           }}
         >
 
-          <ScrollTop {...props}>
-            <Fab color="secondary" size="small" aria-label="scroll back to top">
-              <KeyboardArrowUpIcon />
-            </Fab>
-          </ScrollTop>
-
+       
           <footer
           >
             <CssBaseline />
@@ -152,7 +120,7 @@ function Layout({ children, props }) {
                 >
                   Contact Us
                   </Typography>
-                <Divider variant="middle" />
+                <Divider className={footerClasses.divider} variant="middle" />
 
                 <Typography variant="body1" align="center" >
                   High View Construction
@@ -166,12 +134,12 @@ function Layout({ children, props }) {
                   color="primary"
                   aria-label="vertical outlined primary button group"
                 >
-                  <Button  color="secondary" href="tel:720-325-9473" startIcon={<PhoneIcon />} >
+                  <Button color="secondary" href="tel:720-325-9473" startIcon={<PhoneIcon />} >
                     <Typography variant="caption" >
                       720-325-9473
                </Typography>
                   </Button>
-                  <Button  color="secondary" href="mailto:gilbertosanchez@highview5280.com" startIcon={<EmailIcon />}>
+                  <Button color="secondary" href="mailto:gilbertosanchez@highview5280.com" startIcon={<EmailIcon />}>
                     <Typography variant="caption" align="center" >
                       Gilbertosanchez@highview5280.com
                         </Typography>
@@ -179,14 +147,14 @@ function Layout({ children, props }) {
                 </ButtonGroup>
               </Box>
 
-              <Divider orientation="vertical" flexItem />
+              <Divider className={footerClasses.divider} orientation="vertical" flexItem />
 
 
               <Box className={footerClasses.boxInner} alignSelf="center">
                 <Typography variant="h6" align="center" >
                   Gutter Services
           </Typography>
-                <Divider variant="middle" />
+                <Divider className={footerClasses.divider} variant="middle" />
 
                 <ButtonGroup
                   orientation="vertical"
@@ -201,12 +169,12 @@ function Layout({ children, props }) {
                       Commercial Services
              </Typography>
                   </Button>
-                  <Button  color="secondary">
+                  <Button color="secondary">
                     <Typography variant="caption" align="center" >
                       Residential Services
              </Typography>
                   </Button>
-                  <Button  color="secondary">
+                  <Button color="secondary">
                     <Typography variant="caption" align="center" >
                       Partnership Information
              </Typography>
@@ -214,7 +182,7 @@ function Layout({ children, props }) {
                 </ButtonGroup>
               </Box>
 
-              <Divider orientation="vertical" flexItem />
+              <Divider className={footerClasses.divider} orientation="vertical" flexItem />
 
               <Box className={footerClasses.boxInner} alignSelf="center">
 
@@ -222,10 +190,10 @@ function Layout({ children, props }) {
                 <Typography variant="body2" align="center" > <Button
                   color="secondary"
                   aria-label="Referrals Program "
-                  >
+                >
                   Referrals Program
                </Button>
-                  <Divider variant="middle" />
+                  <Divider className={footerClasses.divider} variant="middle" />
 
                   <br />
             Free installation of our basic gutter guards up to 100ft when you refer family &amp; friends to High View Construction if they spend $500 or more</Typography>
@@ -241,7 +209,7 @@ function Layout({ children, props }) {
                 Proudly Serving all of Denver Metro Area and the surrounding area including
              </Typography>
 
-              <Divider variant="middle" />
+              <Divider className={footerClasses.divider} variant="middle" />
               <Typography
                 variant="caption"
                 display="block"
@@ -259,8 +227,7 @@ function Layout({ children, props }) {
           </footer>
         </div>
       </ThemeProvider>
-    </>
-  )
+    </div>)
 }
 
 Layout.propTypes = {

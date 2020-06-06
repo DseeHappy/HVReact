@@ -528,13 +528,21 @@ const vendorStyles = makeStyles((theme) => ({
     imgContainer: {
         display: 'inline-block',
         borderRadius: '20px',
-        maxWidth: '60rem'
+        [theme.breakpoints.down('sm')]: {
+            width: '12rem'
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '20rem'
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: '30rem'
+        },
 
     },
     localContainer: {
         display: 'box',
         backgroundColor: '#142a4f',
-        color:'#ffff'
+        color: '#ffff'
     },
     vendorContainer: {
         display: 'flex',
@@ -548,8 +556,8 @@ const vendorStyles = makeStyles((theme) => ({
         borderColor: '#142a4f'
 
     },
-    divider:{
-        backgroundColor:'#f58d02'
+    divider: {
+        backgroundColor: '#f58d02'
     },
     textContainer: {
         padding: '2rem',
@@ -583,15 +591,26 @@ const vendorStyles = makeStyles((theme) => ({
     titleContainer: {
         display: 'block',
         textAlign: 'center',
+        paddingBottom:'0rem'
 
     },
     brandContainer: {
         display: 'block',
         textAlign: 'center',
         backgroundColor: '#142a4f',
-        padding:'2rem',
-        margin:'0rem'
+        padding: '2rem',
+        margin: '0rem'
     },
+    logoImg: {
+        height: '1.2rem'
+    },
+    imgBar:{
+        width:'1px'
+    },
+    imgBarContainer:{
+        width:'1.2rem',
+        
+    }
 
 }));
 
@@ -1085,9 +1104,10 @@ function Home() {
                             <Typography variant="h5" align="center" component="h7">
 
                                 Locally Owned Family Business
-                                <img classname={vendorClasses.img} src={logoBar} />
 
                             </Typography>
+                            <img classname={vendorClasses.imgBar} src={logoBar} />
+
                         </Container>
                         <Container className={vendorClasses.textContainer}>
                             <Typography align="center">
@@ -1111,8 +1131,8 @@ function Home() {
 
                     <Container className={vendorClasses.brandContainer}>
 
-                        <Typography className={vendorClasses.imgContainer} color='secondary' variant="h3" align="center" component="h7" >
-                            <img classname={vendorClasses.img} src={logo} />
+                        <Typography className={vendorClasses.imgBarContainer} color='secondary' variant="h3" align="center" component="h7" >
+                            <img classname={vendorClasses.logoImg} src={logo} />
                             <em>
                                 Our Vendors
                             </em>

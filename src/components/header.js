@@ -43,6 +43,7 @@ import { Link } from "gatsby"
 import logo from "../images/HighviewTR.png"
 
 import Estimate from "../pages/Estimate"
+
 const scrollToTopStyles = makeStyles((theme) => ({
   root: {
     position: 'fixed',
@@ -340,39 +341,9 @@ function ElevationScroll(props) {
   });
 }
 
-function ScrollTop(props) {
-  const { children, window } = props;
-  const classes = useStyles();
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
-  return (
-    <Zoom in={trigger}>
-      <div onClick={handleClick} role="presentation" className={classes.root}>
-        {children}
-      </div>
-    </Zoom>
-  );
-}
-
 
 export default function Header(props) {
   const classes = useStyles();
-  const scrollToTopClasses = scrollToTopStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -397,10 +368,11 @@ export default function Header(props) {
   return (
     <div className={classes.root}>
       <HideOnScroll {...props}>
+      
 
         <AppBar>
-          <Toolbar id="back-to-top-anchor" variant="dense" className={classes.topToolbar}>
-            <Button href="tel:720-325-9473" noWrap variant="text"  className={classes.topToolbarBtns}>
+          <Toolbar  variant="dense" className={classes.topToolbar}>
+            <Button href="tel:720-325-9473" noWrap variant="text" className={classes.topToolbarBtns}>
               <PhoneIcon />
       720-325-9473
 </Button>
@@ -425,7 +397,7 @@ export default function Header(props) {
 
             <Divider orientation="vertical" flexItem />
 
-            <Button href="https://login.highview5280.com" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
+            <Button href="https://login.highview5280.com/portal/highviewconstruction" noWrap variant="text" color="secondary" className={classes.topToolbarBtns}>
               Login
 </Button>
 
@@ -506,11 +478,7 @@ export default function Header(props) {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
-      <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+    
       <SwipeableDrawer
         className={classes.drawer}
         variant="persistent"
