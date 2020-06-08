@@ -759,6 +759,7 @@ function Home() {
     return (
         <div>
             <CssBaseline />
+            <SEO title="Home" />
 
             <Container maxWidth="xl" className={classes.root} >
                 <ReactCompareImage className={classes.img} leftImage={before} leftImageLabel="Before" rightImageLabel="After" rightImage={after} />

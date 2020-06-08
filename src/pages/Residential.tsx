@@ -31,7 +31,7 @@ const centerContent = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       paddingTop: '5rem',
       flexWrap: 'nowrap',
-      width:'100%'
+      width: '100%'
     }
   },
   Container: {
@@ -99,7 +99,7 @@ const centerContent = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('md')]: {
       height: '8rem',
-      padding:'.4rem',
+      padding: '.4rem',
 
 
     }
@@ -191,7 +191,7 @@ const servicesContent = makeStyles((theme) => ({
   },
   titleContainer: {},
   title: {
-    color:'#ffff'
+    color: '#ffff'
   },
   bodyBox: {},
   paper: {
@@ -252,7 +252,7 @@ const servicesContent = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.black,
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
-    
+
   },
   imageTitle: {
     position: 'relative',
@@ -267,8 +267,8 @@ const servicesContent = makeStyles((theme) => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
-  divider:{
-    backgroundColor:"#f58d02"
+  divider: {
+    backgroundColor: "#f58d02"
   }
 }))
 
@@ -287,7 +287,7 @@ const images = [
     url: '../images/a (10).jpg',
     title: 'Windows',
     width: '50%',
-  },{
+  }, {
     url: '../images/a (10).jpg',
     title: 'Patio Doors',
     width: '50%',
@@ -358,64 +358,68 @@ function Residential(props: PageProps) {
 
 
         <Container className={splitClasses.rightCenterTextContainer}>
-          <Typography className={splitClasses.rightCenterTitle}>
-            Windows help you stay connected
+          <Typography variant="h5" className={splitClasses.rightCenterTitle} color="primary">
+            Professional Emergency Repair
         </Typography>
-          <Typography className={splitClasses.rightCenterBody}>
-            Although we’re not able to gather together during COVID-19, people in communities across North America have been using windows to safely communicate with friends, neighbors and loved ones,. It’s humbling to know that our windows are #ConnectingCommunities.
-
-            To help, we’ve created free, printable signs you can hang in your windows to celebrate milestones, thank first responders or just have a little fun as we navigate this challenge together.
-
-            To see how others are staying connected and to share images of your window signs, follow Ply Gem and #ConnectingCommunities on social media.
+          <Typography className={splitClasses.rightCenterBody} variant="subtitle1" color="primary">
+            High View Construction has extensive experience in the repair, maintenance, or replacement especially in emergency situations.
         </Typography>
+          <Typography className={splitClasses.rightCenterBody}  variant="subtitle1" color="primary">
+            Our experienced professionals are ready in case of damage repair.<br /> We can ensure your home is prepared for anything weather Colorado provides
+       </Typography>
+          <Divider variant="middle" />
+
+          <Typography className={splitClasses.rightCenterBody}  variant="subtitle2" color="primary">
+            at High View we provide 18-month workmanship warranty on our professional installation services
+         </Typography>
         </Container>
       </Container>
 
       <Container className={servicesClasses.root}>
         <Container className={servicesClasses.titleContainer}>
           <Typography align="center" variant="h3" className={servicesClasses.title}>Our Services</Typography>
-          <Divider className={servicesClasses.divider} variant="middle"/>
+          <Divider className={servicesClasses.divider} variant="middle" />
           <Typography align="center" variant="h6" color="secondary">
-          Choose from our wide variety of services, contact us for more information
+            Choose from our wide variety of services, contact us for more information
            </Typography>
         </Container>
 
         <Box className={servicesClasses.bodyBox}>
-          
+
 
         </Box>
         <div className={servicesClasses.root}>
-        {images.map((image) => (
-          <ButtonBase
-            focusRipple
-            key={image.title}
-            className={servicesClasses.image}
-            focusVisibleClassName={servicesClasses.focusVisible}
-            style={{
-              width: image.width,
-            }}
-          >
-            <span
-              className={servicesClasses.imageSrc}
+          {images.map((image) => (
+            <ButtonBase
+              focusRipple
+              key={image.title}
+              className={servicesClasses.image}
+              focusVisibleClassName={servicesClasses.focusVisible}
               style={{
-                backgroundImage: `url(${image.url})`,
+                width: image.width,
               }}
-            />
-            <span className={servicesClasses.imageBackdrop} />
-            <span className={servicesClasses.imageButton}>
-              <Typography
-                component="span"
-                variant="subtitle1"
-                color="inherit"
-                className={servicesClasses.imageTitle}
-              >
-                {image.title}
-                <span className={servicesClasses.imageMarked} />
-              </Typography>
-            </span>
-          </ButtonBase>
-        ))}
-      </div>
+            >
+              <span
+                className={servicesClasses.imageSrc}
+                style={{
+                  backgroundImage: `url(${image.url})`,
+                }}
+              />
+              <span className={servicesClasses.imageBackdrop} />
+              <span className={servicesClasses.imageButton}>
+                <Typography
+                  component="span"
+                  variant="subtitle1"
+                  color="inherit"
+                  className={servicesClasses.imageTitle}
+                >
+                  {image.title}
+                  <span className={servicesClasses.imageMarked} />
+                </Typography>
+              </span>
+            </ButtonBase>
+          ))}
+        </div>
       </Container>
 
     </Layout>
