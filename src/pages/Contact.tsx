@@ -35,8 +35,8 @@ const contactStyles = makeStyles((theme) => ({
   buttonGroup: {
     alignSelf: 'center'
   },
-  logoImg:{
-    height:'40rem',
+  logoImg: {
+    height: '40rem',
   }
 }))
 
@@ -48,9 +48,10 @@ function Contact(props: PageProps) {
       <SEO title="Contact" />
       <Container><br /></Container>
       <Container className={contactClasses.root}>
-        <img className={contactClasses.logoImg} src={logo} />
         <Container>
           <Typography className={contactClasses.titleText}>
+            <img className={contactClasses.logoImg} src={logo} />
+            <br />
             Contact Us Today
     </Typography>
           <Divider className={contactClasses.divider} variant="middle" />
@@ -60,25 +61,27 @@ function Contact(props: PageProps) {
                </Typography>
           <Typography className={contactClasses.bodyText} variant="body2"  >
             Gilberto Sanchez | Owner
-                </Typography>
-
-          <ButtonGroup
-            orientation="vertical"
-            color="primary"
-            aria-label="vertical outlined primary button group"
-            className={contactClasses.buttonGroup}
-          >
-            <Button color="secondary" href="tel:720-325-9473" startIcon={<PhoneIcon />} >
-              <Typography variant="caption" >
-                720-325-9473
+            <br />
+            <ButtonGroup
+              orientation="vertical"
+              color="primary"
+              aria-label="vertical outlined primary button group"
+              className={contactClasses.buttonGroup}
+            >
+              <Button color="secondary" href="tel:720-325-9473" startIcon={<PhoneIcon />} >
+                <Typography variant="caption" >
+                  720-325-9473
                </Typography>
-            </Button>
-            <Button color="secondary" href="mailto:gilbertosanchez@highview5280.com" startIcon={<EmailIcon />}>
-              <Typography variant="caption" align="center" >
-                Gilbertosanchez@highview5280.com
+              </Button>
+              <Button color="secondary" href="mailto:gilbertosanchez@highview5280.com" startIcon={<EmailIcon />}>
+                <Typography variant="caption" align="center" >
+                  Gilbertosanchez@highview5280.com
                         </Typography>
-            </Button>
-          </ButtonGroup>
+              </Button>
+            </ButtonGroup>
+          </Typography>
+
+
         </Container>
       </Container>
     </Layout>
