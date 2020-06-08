@@ -591,7 +591,7 @@ const vendorStyles = makeStyles((theme) => ({
     titleContainer: {
         display: 'block',
         textAlign: 'center',
-        paddingBottom:'0rem'
+        paddingBottom: '0rem'
 
     },
     brandContainer: {
@@ -602,14 +602,19 @@ const vendorStyles = makeStyles((theme) => ({
         margin: '0rem'
     },
     logoImg: {
-        height: '1.2rem'
+        [theme.breakpoints.down('sm')]:{
+            height:'50px'
+        },
+        [theme.breakpoints.up('md')]:{
+            height:'50px'
+        }
     },
-    imgBar:{
-        width:'1px'
+    imgBar: {
+        width: '1px'
     },
-    imgBarContainer:{
-        width:'1.2rem',
-        
+    imgBarContainer: {
+        width: '1.2rem',
+
     }
 
 }));
@@ -1106,7 +1111,6 @@ function Home() {
                                 Locally Owned Family Business
 
                             </Typography>
-                            <img classname={vendorClasses.imgBar} src={logoBar} />
 
                         </Container>
                         <Container className={vendorClasses.textContainer}>
@@ -1119,6 +1123,9 @@ function Home() {
                             <Typography align="center">
                                 <b>We believe in providing high quality services at a reasonable price.</b><br /> <em>Don't hassle with large corporations, stay local and know you will get quality service.</em>
                             </Typography>
+                            <br />
+                            <img classname={vendorClasses.imgBar} src={logoBar} />
+
                         </Container>
                     </Container>
                 </Container>
@@ -1132,7 +1139,7 @@ function Home() {
                     <Container className={vendorClasses.brandContainer}>
 
                         <Typography className={vendorClasses.imgBarContainer} color='secondary' variant="h3" align="center" component="h7" >
-                            <img classname={vendorClasses.logoImg} src={logo} />
+                            <img  classname={vendorClasses.logoImg} src={logo} />
                             <em>
                                 Our Vendors
                             </em>

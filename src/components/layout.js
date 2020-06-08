@@ -176,7 +176,7 @@ function Layout({ children, props }) {
                   </Button>
                   <Button color="secondary">
                     <Typography variant="caption" align="center" >
-                      Partnership Information
+                      Contact Us
              </Typography>
                   </Button>
                 </ButtonGroup>

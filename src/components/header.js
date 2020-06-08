@@ -417,7 +417,7 @@ export default function Header(props) {
                 720-325-9473
 </Button>
               <List className={classes.largeNavBar}>
-                {['Residential', 'Commercial', 'Partner'].map((text, index) => (
+                {['Residential', 'Commercial', 'Contact'].map((text, index) => (
                   <Link className={classes.largeNavBarBtns} to={text}>
                     <ListItem alignItems="flex-start" button key={text}>
                       <ListItemText primary={text} />
@@ -495,7 +495,7 @@ export default function Header(props) {
         </div>
         <Divider />
         <List >
-          {['Residential', 'Commercial', 'Partner'].map((text, index) => (
+          {['Residential', 'Commercial', 'Contact'].map((text, index) => (
             <Link className={classes.drawerBtns} to={text}>
               <ListItem button key={text}>
                 <ListItemText primary={text} />
