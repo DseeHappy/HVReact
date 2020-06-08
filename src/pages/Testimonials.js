@@ -1,10 +1,20 @@
 import React from 'react';
-import { Switch, Button, ButtonGroup, Divider, Container, Box } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
-import Slide from '@material-ui/core/Slide';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import clsx from 'clsx';
+import { Card, Container, Button } from '@material-ui/core';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
 
@@ -15,253 +25,147 @@ import angiesListReview from '../images/ReviewusAngiesList.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: '#142a4f',
-        zIndex: '1'
     },
-    wrapper: {
-        padding: '1.2rem',
-        margin: 'auto',
-        padding: 'auto',
-        maxWidth: 'auto',
+    card: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    avatar: {
+        backgroundColor: '#29a036',
+    },
+    angieButton: {
+        backgroundColor: '#fff',
+        borderRadius: '20px',
+
+    },
+    angieContainer: {
+        borderRadius: '20px',
+        maxWidth: 180,
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        
+    },
+    angieImg: {
+        maxWidth: 150,
+        
+
+    },
+    cardContainer: {
         display: 'flex',
-        backgroundColor: '#142a4f',
-        zIndex: '1',
+        margin: '0rem',
+        padding: '1rem',
+        justifyContent: 'center',
+        paddingBottom:'1rem',
         [theme.breakpoints.down('sm')]: {
-            alignItems: 'center',
-
+            flexWrap: 'wrap'
         },
-        [theme.breakpoints.down('md')]: {
-            flexDirection: 'column',
-
-        },
-    },
-    paper: {
-        zIndex: 1,
-        borderRadius: '10px',
-        margin: '20px 0',
-        display: 'block',
-        padding: 'auto',
-        zIndex: '1',
-
-        [theme.breakpoints.down('sm')]: {
-            
-
-        },
-        [theme.breakpoints.down('md')]: {
-            minWidth: '30rem',
-            minHeight: '23rem',
-        },
-        [theme.breakpoints.up('lg')]: {
-            minWidth: '20rem',
-            margin: '.5rem',
-            maxWidth: '25rem',
-            minHeight: '23rem',
+        [theme.breakpoints.up('md')]: {
+            flexWrap: 'nowrap'
         }
     },
-    svg: {
-        width: '100',
-        height: '100',
-    },
-
-    img: {
-        height: '190px',
-        margin: 'auto',
-        padding: 'auto',
-
-    },
-    imgBtn: {
-        minWidth: '150px',
-        backgroundColor: '#ffff',
-        [theme.breakpoints.down('sm')]: {
-            margin: '1.2rem',
-
-
-        },
-        [theme.breakpoints.up('md')]: {
-
-            margin: '2rem',
-
-
-
-        },
-        [theme.breakpoints.up('lg')]: {
-
-            margin: '1rem',
-
-
-
-        },
-
-    },
-    roundBtn: {
-        backgroundColor: '#29a036',
-        margin: '.5rem',
-        padding: '0.5rem',
-        borderRadius: '100%',
-        display: 'inlineBlock',
-        color: '#fff',
-        fontSize: '1.4rem',
-        fontWeight: '600',
-        lineHeight: '50px',
-        verticalAlign: 'baseline',
-        minWidth: '10px',
-
-
-    },
-    testimonialQuote: {
-        padding: '2rem',
-        margin: '1rem',
-        width: '80%',
-        textOverflow: 'ellipsis',
-        display: 'block',
-        position: 'relative',
-        textAlign: 'right',
-        minHeight: '14rem'
-
-    },
-    testimonialsContainer: {
-        backgroundColor: '#142a4f',
-        [theme.breakpoints.down('sm')]: {
-            display: 'inline',
-            margin:'10rem'
-
-        },
-        [theme.breakpoints.up('md')]: {
-            display: 'flex',
-
-            flexDirection: 'row',
-            padding: '2rem',
-            margin: '2rem',
-
-
-
-        },
-        [theme.breakpoints.up('lg')]: {
-
-            flexDirection: 'row',
-            padding: '2rem',
-            margin: '2rem',
-
-
-
-        },
-
-
-    },
-    title: {
-        display: 'inline',
-        margin: '.1rem',
-
-    },
-    testimonialTitle: {
-        maxWidth: '20rem',
-        wordWrap: 'ellipsis'
-
-    },
-    testimonialBottomBtn: {
-        display: 'inline',
-        padding: '0rem',
-        margin: '0rem',
-        position: 'relative',
-        float: 'right',
-        right: '10px',
-        bottom: '2px'
-
-    }
 
 }));
 
 export default function Testimonials() {
     const classes = useStyles();
-    const [checked, setChecked] = React.useState(true);
+    const [expanded, setExpanded] = React.useState(false);
 
-    const handleChange = () => {
-        setChecked((prev) => !prev);
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
     };
 
     return (
-        <div className={classes.root}>
-            <Box className={classes.testimonialsContainer}>
-
-                <Button className={classes.imgBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302">
-                    <img className={classes.img} src={angiesListReview} />
-
+        <Container className={classes.root}>
+            <Container className={classes.angieContainer}>
+                <Button href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302" className={classes.angieButton}>
+                    <img src={angiesListReview} className={classes.angieImg} />
                 </Button>
+            </Container>
+            <Container className={classes.cardContainer}>
+                <Card className={classes.card}>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="angiesList" className={classes.avatar}>
+                                A
+            </Avatar>
+                        }
 
-                <Divider orientation="vertical" />
+                        title="Andrew Graves"
+                        subheader="5/27/2020"
+                    />
 
-                <div className={classes.wrapper}>
-                    <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
-                        <Paper elevation={2} className={classes.paper}>
-                            <br />
-                            <Typography className={classes.testimonialTitle}>
-                                <b className={classes.roundBtn}>A</b>
-                                <em className={classes.title}>5/27/2020 - Andrew Graves</em>
-                            </Typography>
-                            <Typography className={classes.testimonialQuote}>
-                                <FormatQuoteIcon />
-                                <br />
-                                I have worked for them for 4 years whenever I need gutters and they
-                                always do a fantastic job. I highly recommend them.
-                            </Typography>
-                            <br />
-                            <Divider variant='middle' />
-                            <br />
-                            <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
+                    <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            I have worked for them for 4 years whenever I need gutters and they
+                            always do a fantastic job. I highly recommend them.
+          </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
 
-                        </Paper>
+                    </CardActions>
 
-                    </Slide>
+                </Card>
+                <Card className={classes.card}>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="recipe" className={classes.avatar}>
+                                A
+            </Avatar>
+                        }
 
-                    <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
-                        <Paper elevation={2} className={classes.paper}>
-                            <br />
-                            <Typography className={classes.testimonialTitle}>
-                                <b className={classes.roundBtn}>A</b>
-                                <em className={classes.title}>5/26/2020 - Donalda Watson-W.
-                                </em>
-                            </Typography>
-                            <Typography className={classes.testimonialQuote}>
-                                <FormatQuoteIcon />
-                                <br />
-                                Great. Work was performed quickly and professionally.
+                        title="Christian Lind"
+                        subheader="5/26/2020"
+                    />
 
-                            </Typography>
-                            <br />
-                            <Divider variant='middle' />
-                            <br />
-                            <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
+                    <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                        They were very reasonable. They came in and did
+                        the job. Everything seems to work out and were
+                        happy with what they did.
+          </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
 
-                        </Paper>
+                    </CardActions>
 
-                    </Slide>
+                </Card>
+                <Card className={classes.card}>
+                    <CardHeader
+                        avatar={
+                            <Avatar aria-label="recipe" className={classes.avatar}>
+                                A
+            </Avatar>
+                        }
 
-                    <Slide direction="left" in={checked} mountOnEnter unmountOnExit>
-                        <Paper elevation={2} className={classes.paper}>
-                            <br />
-                            <Typography className={classes.testimonialTitle}>
-                                <b className={classes.roundBtn}>A</b>
-                                <em className={classes.title}>5/26/2020 - Christian Lind </em>
-                            </Typography>
-                            <Typography className={classes.testimonialQuote}>
-                                <FormatQuoteIcon />
-                                <br />
-                                They were very reasonable. They came in and did
-                                the job. Everything seems to work out and were
-                                happy with what they did.
-                            </Typography>
-                            <br />
-                            <Divider variant='middle' />
-                            <br />
-                            <Button className={classes.testimonialBottomBtn} href="https://member.angieslist.com/member/reviews/edit?serviceProviderId=24375094&cid=PRL.E014.P026.20180302"> Read More ></Button>
+                        title="Donalda Watson-W"
+                        subheader="5/26/2020"
+                    />
 
-                        </Paper>
+                    <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                        Great. Work was performed quickly and
+                        professionally.
+          </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
 
-                    </Slide>
-                </div>
+                    </CardActions>
 
-            </Box>
-
-        </div>
+                </Card>
+            </Container>
+        </Container>
     );
 }

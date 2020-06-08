@@ -599,7 +599,7 @@ const vendorStyles = makeStyles((theme) => ({
         textAlign: 'center',
         backgroundColor: '#142a4f',
         padding: '2rem',
-        margin: '0rem'
+        margin: '0rem',
     },
     logoImg: {
         [theme.breakpoints.down('sm')]:{
@@ -626,19 +626,15 @@ const whyhighviewstyles = makeStyles((theme) => ({
     headerContainer: {
         backgroundColor: '#42527b',
         color: '#ffffff',
-        transform: 'skew(20deg)',
         '& h1': {
-            transform: 'skew(-20deg)', /* UNSKEW */
             fontSize: '1.5rem',
             padding: '.5rem'
         },
         '& h2': {
-            transform: 'skew(-20deg)', /* UNSKEW */
             fontSize: '1.2rem',
             padding: '.5rem'
         },
         '& h3': {
-            transform: 'skew(-20deg)', /* UNSKEW */
             fontSize: '1rem',
             padding: '.5rem'
         }
@@ -656,27 +652,15 @@ const whyhighviewstyles = makeStyles((theme) => ({
 
 
         [theme.breakpoints.down('sm')]: {
-            borderLeft: '2rem solid ',
-            borderRight: '2rem solid ',
-            height: '2rem',
             width: '100%',
-            borderBottom: '20rem solid transparent',
 
         },
         [theme.breakpoints.up('md')]: {
-            borderLeft: '6rem solid ',
-            borderRight: '6rem solid ',
-            height: '6rem',
             width: '100%',
-            borderBottom: '18rem solid transparent',
         },
 
         [theme.breakpoints.up('lg')]: {
-            borderLeft: '9rem solid ',
-            borderRight: '9rem solid ',
-            height: '9rem',
             width: '100%',
-            borderBottom: '18rem solid transparent',
         }
     },
     trapezoid: {
@@ -961,7 +945,7 @@ function Home() {
                     <Container className={whyhighviewClasses.listContainer}>
                         <List >
                             <ListItem>
-                                <ListItemText inset align="center">
+                                <ListItemText  align="center">
                                     <QuestionAnswerIcon /><br />
                          A full explanation of our recommended solutions
                      </ListItemText>
@@ -969,14 +953,14 @@ function Home() {
                             <Divider variant="middle" />
 
                             <ListItem>
-                                <ListItemText inset align="center">
+                                <ListItemText  align="center">
                                     <BuildIcon /><br />
                          The best technicians in the business
                      </ListItemText>
                             </ListItem>
                             <Divider variant="middle" />
                             <ListItem>
-                                <ListItemText inset align="center">
+                                <ListItemText  align="center">
                                     <BeenhereIcon /> <br />
                      A full clean up and follow up after every job
 
