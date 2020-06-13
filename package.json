@@ -3,7 +3,7 @@
   "private": true,
   "description": "We believe in providing high quality services at a reasonable price.Don't hassle with large corporations, stay local and know you will get quality service.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Daniel Sanchez ",
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
