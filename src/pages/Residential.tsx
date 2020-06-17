@@ -280,7 +280,7 @@ const images = [
   },
   {
     url: '../images/a (10).jpg',
-    title: 'Siding',
+    title: 'Painting',
     width: '50%',
   },
   {
@@ -289,7 +289,7 @@ const images = [
     width: '50%',
   }, {
     url: '../images/a (10).jpg',
-    title: 'Patio Doors',
+    title: 'Flooring',
     width: '50%',
   },
   {

@@ -680,7 +680,7 @@ const images = [
     },
     {
         url: '../images/a (10).jpg',
-        title: 'Partner With Us',
+        title: 'Contact Us',
         width: '30%',
     },
     {
